@@ -4,18 +4,13 @@ out/
 src/
 test-fixtures/
 tsconfig.json
-webpack.config.js
 .prettierignore
-azure-pipelines.yml
 scripts/
 samples/
 .gitignore
 .github/
 tsconfig.json
 yarn.lock
-CONTRIBUTORS.md
-CONTRIBUTING.md
-CODE_OF_CONDUCT.md
 
 node_modules
 !node_modules/prettier

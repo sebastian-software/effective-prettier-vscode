@@ -15,7 +15,7 @@
         "--extensionDevelopmentPath=${workspaceFolder}"
       ],
       "outFiles": ["${workspaceFolder}/dist/**/*.js"],
-      "preLaunchTask": "npm: webpack"
+      "preLaunchTask": "npm: build"
     },
     {
       "name": "Run Extension (With Other Extensions)",
@@ -24,7 +24,7 @@
       "runtimeExecutable": "${execPath}",
       "args": ["--extensionDevelopmentPath=${workspaceFolder}"],
       "outFiles": ["${workspaceFolder}/dist/**/*.js"],
-      "preLaunchTask": "npm: webpack"
+      "preLaunchTask": "npm: build"
     },
     {
       "name": "Extension Tests",
