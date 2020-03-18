@@ -1,6 +1,6 @@
 import { execSync } from "child_process";
 import * as fs from "fs";
-import * as mem from "mem";
+import mem from "mem";
 import * as path from "path";
 import * as prettier from "prettier";
 import * as readPkgUp from "read-pkg-up";
