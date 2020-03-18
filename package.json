@@ -14,11 +14,11 @@
     "theme": "light"
   },
   "homepage": "https://marketplace.visualstudio.com/items?itemName=sebastian-software.vscode-prettier",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/prettier/vscode-prettier.git"
+    "url": "git+https://github.com/sebastian-software/vscode-prettier.git"
   },
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/prettier/vscode-prettier/issues"
   },
