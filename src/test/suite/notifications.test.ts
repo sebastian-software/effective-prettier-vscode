@@ -1,7 +1,7 @@
 import * as assert from "assert";
-// tslint:disable-next-line: no-implicit-dependencies
+
 import * as sinon from "sinon";
-// tslint:disable-next-line: no-implicit-dependencies
+
 import { MessageItem, MessageOptions, window } from "vscode";
 import {
   LEGACY_VSCODE_LINTER_CONFIG_MESSAGE,

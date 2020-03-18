@@ -16,11 +16,6 @@ interface IExtensionConfig {
    */
   eslintIntegration: boolean;
   /**
-   * Use 'prettier-tslint' instead of 'prettier'.
-   * Other settings will only be fallbacks in case they could not be inferred from tslint rules.
-   */
-  tslintIntegration: boolean;
-  /**
    * Use 'prettier-stylelint' instead of 'prettier'.
    * Other settings will only be fallbacks in case they could not be inferred from eslint rules.
    */
@@ -116,58 +111,6 @@ interface IPrettierEslintOptions {
  * @returns {string} the formatted code.
  */
 export type PrettierEslintFormat = (options: IPrettierEslintOptions) => string;
-
-interface IPrettierTslintOptions {
-  /**
-   * The path of the file being formatted
-   * can be used in lieu of `tslintConfig` (tslint will be used to find the
-   * relevant config for the file). Will also be used to load the `text` if
-   * `text` is not provided.
-   */
-  filePath?: string;
-  /**
-   * The text (TypeScript code) to format
-   */
-  text: string;
-  /**
-   * The path to the tslint module to use.
-   * Will default to require.resolve('tslint')
-   */
-  tslintPath?: string;
-  /**
-   * The config to use for formatting
-   * with TSLint.
-   */
-  tslintConfig?: object;
-  /**
-   * The options to pass for
-   * formatting with `prettier`. If not provided, prettier-tslint will attempt
-   * to create the options based on the tslintConfig
-   */
-  prettierOptions?: Partial<prettier.Options>;
-  /**
-   * The options to pass for
-   * formatting with `prettier` if the given option is not inferrable from the
-   * tslintConfig.
-   */
-  fallbackPrettierOptions?: Partial<prettier.Options>;
-  /**
-   * The level for the logs
-   */
-  logLevel?: LogLevel;
-  /**
-   * Run Prettier Last. Default false
-   */
-  prettierLast?: boolean;
-}
-
-/**
- * Format typescript code with prettier-tslint.
- *
- * @param {IPrettierTslintOptions} options - Option bag for prettier-tslint.
- * @returns {string} the formatted code.
- */
-export type PrettierTslintFormat = (options: IPrettierTslintOptions) => string;
 
 export interface IPrettierStylelint {
   format: (options: IPrettierEslintOptions) => Promise<string>;

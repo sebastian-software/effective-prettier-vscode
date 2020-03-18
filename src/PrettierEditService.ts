@@ -8,7 +8,6 @@ import {
   TextDocument,
   TextEdit,
   workspace
-  // tslint:disable-next-line: no-implicit-dependencies
 } from "vscode";
 import { ConfigResolver, RangeFormattingOptions } from "./ConfigResolver";
 import { IgnorerResolver } from "./IgnorerResolver";
@@ -19,11 +18,7 @@ import { ModuleResolver } from "./ModuleResolver";
 import { NotificationService } from "./NotificationService";
 import { PrettierEditProvider } from "./PrettierEditProvider";
 import { FormattingResult, StatusBarService } from "./StatusBarService";
-import {
-  IPrettierStylelint,
-  PrettierEslintFormat,
-  PrettierTslintFormat
-} from "./types";
+import { IPrettierStylelint, PrettierEslintFormat } from "./types";
 import { getConfig, getWorkspaceRelativePath } from "./util";
 
 interface ISelectors {
@@ -319,26 +314,6 @@ export default class PrettierEditService implements Disposable {
     }
 
     this.loggingService.logInfo("Prettier Options:", prettierOptions);
-
-    if (parser === "typescript") {
-      const prettierTslintModule = this.moduleResolver.getModuleInstance(
-        fileName,
-        "prettier-tslint"
-      );
-
-      if (prettierTslintModule) {
-        this.loggingService.logInfo("Formatting using 'prettier-tslint'");
-        return this.safeExecution(() => {
-          const prettierTslintFormat = prettierTslintModule.format as PrettierTslintFormat;
-
-          return prettierTslintFormat({
-            fallbackPrettierOptions: prettierOptions,
-            filePath: fileName,
-            text
-          });
-        }, text);
-      }
-    }
 
     if (this.languageResolver.doesLanguageSupportESLint(languageId)) {
       const prettierEslintModule = this.moduleResolver.getModuleInstance(

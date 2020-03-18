@@ -5,7 +5,6 @@ import {
   window,
   workspace,
   WorkspaceConfiguration
-  // tslint:disable-next-line: no-implicit-dependencies
 } from "vscode";
 import TelemetryReporter from "vscode-extension-telemetry";
 import { LoggingService } from "./LoggingService";
@@ -16,11 +15,7 @@ import {
   VIEW_LOGS_ACTION_TEXT
 } from "./message";
 
-const LEGACY_LINTER_OPTIONS = [
-  "eslintIntegration",
-  "tslintIntegration",
-  "stylelintIntegration"
-];
+const LEGACY_LINTER_OPTIONS = ["eslintIntegration", "stylelintIntegration"];
 
 export class NotificationService implements Disposable {
   private noLegacyConfigWorkspaces: string[] = [];

@@ -29,7 +29,6 @@ export function resolveGlobalNodePath(
     options.shell = true;
   }
 
-  // tslint:disable-next-line: no-empty
   const handler = () => {};
   try {
     process.on("SIGPIPE", handler);
@@ -86,7 +85,6 @@ export function resolveGlobalYarnPath(
     options.shell = true;
   }
 
-  // tslint:disable-next-line: no-empty
   const handler = () => {};
   try {
     process.on("SIGPIPE", handler);

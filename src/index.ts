@@ -1,8 +1,4 @@
-import {
-  commands,
-  ExtensionContext
-  // tslint:disable-next-line: no-implicit-dependencies
-} from "vscode";
+import { commands, ExtensionContext } from "vscode";
 import TelemetryReporter from "vscode-extension-telemetry";
 import { createConfigFile } from "./commands";
 import { ConfigResolver } from "./ConfigResolver";
