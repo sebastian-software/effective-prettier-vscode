@@ -166,14 +166,6 @@ You can enable Auto-Fix on Save for ESLint or Stylelint and still have formattin
 
 > NOTE: If you are seeing conflicts between Prettier and ESLint this is because you don't have the right ESLint rules set as explained in the [Prettier documentation](https://prettier.io/docs/en/integrating-with-linters.html).
 
-### Legacy Prettier Linter Integration (unreliable, not recommended)
-
-> WARNING: There are numerous issues with this type of integration due to problems in the libraries like `prettier-eslint`. See: [#870](https://github.com/prettier/prettier-vscode/issues/870), [#137](https://github.com/prettier/prettier-vscode/issues/137), [#494](https://github.com/prettier/prettier-vscode/issues/494), [#1191](https://github.com/prettier/prettier-vscode/issues/1191), and [others](https://github.com/prettier/prettier-vscode/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aclosed+linter). Due to these problems, this feature will likely to be removed completely in future versions of this extension.
-
-The legacy option for integrating linters with Prettier is to use `prettier-eslint` or `prettier-stylelint`. In order to use these integrations you MUST install these modules in your project's `package.json` along with dependencies like `prettier`, `eslint`, `stylelint`, etc.
-
-This extension will automatically detect when you have these extensions installed and use them instead of `prettier` by itself. For configuration of these linter integrations, see their respective documentation.
-
 ## Settings
 
 ### Extension Settings
@@ -190,12 +182,6 @@ Supply the path to an ignore file such as `.gitignore` or `.prettierignore`.
 Files which match will not be formatted. Set to `null` to not read ignore files.
 
 **Note, if this is set, this value will always be used and local ignore files will be ignored.**
-
-#### prettier.configPath
-
-Supply a custom path to the prettier configuration file.
-
-**Note, if this is set, this value will always be used and local configuration files will be ignored. A better option for global defaults is to put a `~/.prettierrc` file in your home directory.**
 
 #### prettier.prettierPath
 
@@ -230,12 +216,3 @@ When a `package.json` is present in your project and it contains prettier, plugi
 **Your project is configured to use an outdated version of prettier that cannot be used by this extension. Upgrade to the latest version of prettier.**
 
 You must upgrade to a newer version of prettier.
-
-**You have legacy linter settings in your VS Code config. They are no longer being used.**
-
-If you receive this error message it means that one of the following settings were found in your VS Code config. Either in your global or workspace settings. These configuration options should be deleted as they are no longer used for anything. See [these instructions for linter configuration](#linter-integration).
-
-```
-prettier.eslintIntegration
-prettier.stylelintIntegration
-```

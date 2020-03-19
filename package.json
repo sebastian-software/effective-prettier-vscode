@@ -173,31 +173,6 @@
           "type": "string",
           "markdownDescription": "%ext.config.prettierPath%",
           "scope": "resource"
-        },
-        "prettier.configPath": {
-          "type": "string",
-          "markdownDescription": "%ext.config.configPath%",
-          "scope": "resource"
-        },
-        "prettier.eslintIntegration": {
-          "type": [
-            "boolean",
-            "null"
-          ],
-          "markdownDescription": "%ext.config.eslintIntegration%",
-          "scope": "resource",
-          "default": null,
-          "deprecationMessage": "%ext.config.lintDeprecationMessage%"
-        },
-        "prettier.stylelintIntegration": {
-          "type": [
-            "boolean",
-            "null"
-          ],
-          "markdownDescription": "%ext.config.stylelintIntegration%",
-          "default": null,
-          "scope": "resource",
-          "deprecationMessage": "%ext.config.lintDeprecationMessage%"
         }
       }
     },

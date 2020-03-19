@@ -11,16 +11,6 @@ export type PackageManagers = "npm" | "yarn" | "pnpm";
  */
 interface IExtensionConfig {
   /**
-   * Use 'prettier-eslint' instead of 'prettier'.
-   * Other settings will only be fallbacks in case they could not be inferred from eslint rules.
-   */
-  eslintIntegration: boolean;
-  /**
-   * Use 'prettier-stylelint' instead of 'prettier'.
-   * Other settings will only be fallbacks in case they could not be inferred from eslint rules.
-   */
-  stylelintIntegration: boolean;
-  /**
    * Path to '.prettierignore' or similar.
    */
   ignorePath: string;
@@ -28,10 +18,6 @@ interface IExtensionConfig {
    * Path to prettier module.
    */
   prettierPath: string | undefined;
-  /**
-   * Path to prettier configuration file.
-   */
-  configPath: string | undefined;
   /**
    * If true will skip formatting if a prettier config isn't found.
    */
@@ -89,19 +75,9 @@ interface IPrettierEslintOptions {
    */
   prettierOptions?: Partial<prettier.Options>;
   /**
-   * The options to pass for
-   * formatting with `prettier` if the given option is not inferrable from the
-   * eslintConfig.
-   */
-  fallbackPrettierOptions?: Partial<prettier.Options>;
-  /**
    * The level for the logs
    */
   logLevel?: LogLevel;
-  /**
-   * Run Prettier Last. Default false
-   */
-  prettierLast?: boolean;
 }
 
 /**

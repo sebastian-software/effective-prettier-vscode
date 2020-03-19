@@ -19,7 +19,7 @@ import { NotificationService } from "./NotificationService";
 import { PrettierEditProvider } from "./PrettierEditProvider";
 import { FormattingResult, StatusBarService } from "./StatusBarService";
 import { IPrettierStylelint, PrettierEslintFormat } from "./types";
-import { getConfig, getWorkspaceRelativePath } from "./util";
+import { getConfig } from "./util";
 
 interface ISelectors {
   rangeLanguageSelector: DocumentSelector;
@@ -239,9 +239,6 @@ export default class PrettierEditService implements Disposable {
       return;
     }
 
-    // LEGACY: Remove in version 4.x
-    this.notificationService.warnIfLegacyConfiguration(uri);
-
     const ignorePath = this.ignoreResolver.getIgnorePath(fileName);
 
     const prettierInstance = this.moduleResolver.getPrettierInstance(fileName, {
@@ -295,9 +292,7 @@ export default class PrettierEditService implements Disposable {
       fileName,
       parser as prettier.BuiltInParserName,
       {
-        config: vscodeConfig.configPath
-          ? getWorkspaceRelativePath(fileName, vscodeConfig.configPath)
-          : undefined,
+        config: undefined,
         editorconfig: vscodeConfig.useEditorConfig
       },
       rangeFormattingOptions
@@ -325,7 +320,6 @@ export default class PrettierEditService implements Disposable {
           const prettierEslintFormat = prettierEslintModule as PrettierEslintFormat;
 
           return prettierEslintFormat({
-            fallbackPrettierOptions: prettierOptions,
             filePath: fileName,
             text
           });
