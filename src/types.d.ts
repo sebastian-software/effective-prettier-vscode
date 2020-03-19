@@ -46,53 +46,26 @@ export type PrettierVSCodeConfig = IExtensionConfig & prettier.Options;
 
 type LogLevel = "error" | "warn" | "info" | "debug" | "trace";
 
-interface IPrettierEslintOptions {
+interface IPrettierLintOptions {
   /**
    * The path of the file being formatted
    * can be used in lieu of `eslintConfig` (eslint will be used to find the
-   * relevant config for the file). Will also be used to load the `text` if
-   * `text` is not provided.
+   * relevant config for the file).
    */
   filePath?: string;
   /**
-   * The path to the eslint module to use.
-   * Will default to require.resolve('eslint')
+   * Whether to use verbose logging output
    */
-  eslintPath?: string;
-  /**
-   * The config to use for formatting
-   * with ESLint.
-   */
-  eslintConfig?: object;
-  /**
-   * The options to pass for
-   * formatting with `prettier`. If not provided, prettier-eslint will attempt
-   * to create the options based on the eslintConfig
-   */
-  prettierOptions?: Partial<prettier.Options>;
-  /**
-   * The level for the logs
-   */
-  logLevel?: LogLevel;
+  verbose: boolean;
 }
 
 /**
  * Format javascript code with prettier-eslint.
  *
- * @param {IPrettierEslintOptions} options - Option bag for prettier-eslint.
- * @returns {string} the formatted code.
+ * @param options - Option bag for prettier-eslint/prettier-stylelint.
+ * @returns the formatted code.
  */
-export type PrettierEslintFormat = (
+export type PrettierLintFormat = (
   text: string,
-  options: IPrettierEslintOptions
+  options: IPrettierLintOptions
 ) => Promise<string>;
-
-export interface IPrettierStylelint {
-  format: (options: IPrettierEslintOptions) => Promise<string>;
-  resolveConfig: (
-    file: string,
-    options?: {
-      useCache: boolean;
-    }
-  ) => Promise<[prettier.Options, object]>;
-}

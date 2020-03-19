@@ -18,7 +18,7 @@ import { ModuleResolver } from "./ModuleResolver";
 import { NotificationService } from "./NotificationService";
 import { PrettierEditProvider } from "./PrettierEditProvider";
 import { FormattingResult, StatusBarService } from "./StatusBarService";
-import { IPrettierStylelint, PrettierEslintFormat } from "./types";
+import { PrettierLintFormat } from "./types";
 import { getConfig } from "./util";
 
 interface ISelectors {
@@ -319,7 +319,7 @@ export default class PrettierEditService implements Disposable {
         this.loggingService.logInfo(
           "Formatting using '@effective/prettier-eslint'"
         );
-        const prettierEslintFormat = prettierEslintModule.formatText as PrettierEslintFormat;
+        const prettierEslintFormat = prettierEslintModule.formatText as PrettierLintFormat;
         return this.safeExecution(
           () =>
             prettierEslintFormat(text, {
@@ -339,7 +339,7 @@ export default class PrettierEditService implements Disposable {
         this.loggingService.logInfo(
           "Formatting using '@effective/prettier-stylelint'"
         );
-        const prettierStylelint = prettierStylelintModule.formatText as PrettierEslintFormat;
+        const prettierStylelint = prettierStylelintModule.formatText as PrettierLintFormat;
         return this.safeExecution(
           () =>
             prettierStylelint(text, {
