@@ -1,6 +1,6 @@
 {
   "recommendations": [
-    "esbenp.prettier-vscode",
+    "sebastian-software.effective-prettier-vscode",
     "streetsidesoftware.code-spell-checker"
   ]
 }

@@ -1,6 +1,6 @@
 {
-  "name": "vscode-prettier",
-  "displayName": "Prettier - Code formatter",
+  "name": "effective-prettier-vscode",
+  "displayName": "Enhanced Prettier - Code formatter",
   "description": "Code formatter using prettier",
   "version": "1.0.0",
   "publisher": "sebastian-software",
@@ -13,14 +13,14 @@
     "color": "#ffe04b",
     "theme": "light"
   },
-  "homepage": "https://marketplace.visualstudio.com/items?itemName=sebastian-software.vscode-prettier",
+  "homepage": "https://marketplace.visualstudio.com/items?itemName=sebastian-software.effective-prettier-vscode",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sebastian-software/vscode-prettier.git"
+    "url": "git+https://github.com/sebastian-software/effective-prettier-vscode.git"
   },
   "bugs": {
-    "url": "https://github.com/prettier/vscode-prettier/issues"
+    "url": "https://github.com/sebastian-software/effective-prettier-vscode/issues"
   },
   "engines": {
     "vscode": "^1.34.0"
