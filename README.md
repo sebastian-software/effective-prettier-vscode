@@ -277,9 +277,3 @@ If you receive this error message it means that one of the following settings we
 prettier.eslintIntegration
 prettier.stylelintIntegration
 ```
-
-## Telemetry
-
-This extension uses Application Insights to track anonymous feature usage and version info. We don't record IP addresses or any other personally identifiable information. The reason we track this data is simply to help with prioritization of features.
-
-This extension respects the VS Code telemetry setting so if you have telemetry disabled in VS Code we will also not collect telemetry. See the [Visual Studio Code docs](https://code.visualstudio.com/docs/getstarted/telemetry#_disable-telemetry-reporting) for information on how to disable telemetry.

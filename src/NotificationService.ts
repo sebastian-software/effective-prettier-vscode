@@ -6,7 +6,6 @@ import {
   workspace,
   WorkspaceConfiguration
 } from "vscode";
-import TelemetryReporter from "vscode-extension-telemetry";
 import { LoggingService } from "./LoggingService";
 import {
   LEGACY_VSCODE_LINTER_CONFIG_MESSAGE,
@@ -20,10 +19,7 @@ const LEGACY_LINTER_OPTIONS = ["eslintIntegration", "stylelintIntegration"];
 export class NotificationService implements Disposable {
   private noLegacyConfigWorkspaces: string[] = [];
 
-  constructor(
-    private telemetryReporter: TelemetryReporter,
-    private loggingService: LoggingService
-  ) {}
+  constructor(private loggingService: LoggingService) {}
 
   public warnOutdatedPrettierVersion(prettierPath?: string) {
     window.showErrorMessage(
@@ -44,10 +40,6 @@ export class NotificationService implements Disposable {
     const hasLegacyLinterConfig = await this.warnIfLegacyLinterConfiguration(
       vscodeConfig
     );
-
-    this.telemetryReporter.sendTelemetryEvent("legacyConfig", undefined, {
-      "legacyConfig.linters": hasLegacyLinterConfig ? 1 : 0
-    });
 
     if (!hasLegacyLinterConfig) {
       // No legacy configs, add to cache
