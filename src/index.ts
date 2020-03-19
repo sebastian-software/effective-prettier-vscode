@@ -1,6 +1,5 @@
 import { commands, ExtensionContext } from "vscode";
 import TelemetryReporter from "vscode-extension-telemetry";
-import { createConfigFile } from "./commands";
 import { ConfigResolver } from "./ConfigResolver";
 import { IgnorerResolver } from "./IgnorerResolver";
 import { LanguageResolver } from "./LanguageResolver";
@@ -9,7 +8,6 @@ import { ModuleResolver } from "./ModuleResolver";
 import { NotificationService } from "./NotificationService";
 import PrettierEditService from "./PrettierEditService";
 import { StatusBarService } from "./StatusBarService";
-import { TemplateService } from "./TemplateService";
 
 // the application insights key (also known as instrumentation key)
 const telemetryKey = "93c48152-e880-42c1-8652-30ad62ce8b49";
@@ -35,12 +33,6 @@ export function activate(context: ExtensionContext) {
     telemetryKey
   );
 
-  const templateService = new TemplateService(loggingService);
-  const createConfigFileFunc = createConfigFile(templateService);
-  const createConfigFileCommand = commands.registerCommand(
-    "prettier.createConfigFile",
-    createConfigFileFunc
-  );
   const openOutputCommand = commands.registerCommand(
     "prettier.openOutput",
     () => {
@@ -78,7 +70,6 @@ export function activate(context: ExtensionContext) {
   context.subscriptions.push(
     editService,
     reporter,
-    createConfigFileCommand,
     openOutputCommand,
     ...editService.registerDisposables(),
     ...statusBarService.registerDisposables()

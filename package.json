@@ -386,12 +386,6 @@
           ".vue"
         ]
       }
-    ],
-    "commands": [
-      {
-        "command": "prettier.createConfigFile",
-        "title": "%ext.command.createConfigFile.title%"
-      }
     ]
   }
 }

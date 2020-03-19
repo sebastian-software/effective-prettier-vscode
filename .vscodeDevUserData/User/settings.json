@@ -1,7 +1,5 @@
 {
   "editor.formatOnSave": true,
   "editor.formatOnType": false,
-  "[javascript]": {
-    "editor.defaultFormatter": "sebastian-software.effective-prettier-vscode"
-  }
+  "editor.defaultFormatter": "sebastian-software.effective-prettier-vscode"
 }
