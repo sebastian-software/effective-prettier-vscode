@@ -90,15 +90,9 @@ This extension supports [Prettier plugins](https://prettier.io/docs/en/plugins.h
 
 ## Configuration
 
-There are multiple options for configuring Prettier with this extension. You can use [VS Code settings](#prettiers-settings), [prettier configuration files](https://prettier.io/docs/en/configuration.html), or an `.editorconfig` file. The VS Code settings are meant to be used as a fallback and are generally intended only for use on non-project files. **It is recommended that you always include a prettier configuration file in your project specifying all settings for your project.** This will ensure that no matter how you run prettier - from this extension, from the CLI, or from another IDE with Prettier, the same settings will get applied.
+It is recommended that you always include a [Prettier Configuration file](https://prettier.io/docs/en/configuration.html) in your project specifying all settings for your project. This will ensure that no matter how you run prettier - from this extension, from the CLI, or from another IDE with Prettier, the same settings will get applied.
 
-Using [Prettier Configuration files](https://prettier.io/docs/en/configuration.html) to set formatting options is the recommended approach. Options are searched recursively down from the file being formatted so if you want to apply prettier settings to your entire project simply set a configuration in the root. Settings can also be configured through VS Code - however, these settings will only apply while running the extension, not when running prettier through the command line.
-
-### Configuring Default Options
-
-Some users may not wish to create a new Prettier config for every project or use the VS Code settings. Because Prettier searches recursively up the file path, you can place a global prettier config at `~/.prettierrc` to be used as a fallback.
-
-You can also use the setting [`prettier.configPath`](https://github.com/prettier/prettier-vscode#prettierconfigpath) to provide a global configuration. However, be careful, if this is set this value will always be used and local configuration files will be ignored.
+Options are searched recursively down from the file being formatted so if you want to apply prettier settings to your entire project simply set a configuration in the root. Settings can also be configured through VS Code - however, these settings will only apply while running the extension, not when running prettier through the command line.
 
 ### Visual Studio Code Settings
 
