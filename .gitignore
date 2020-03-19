@@ -6,3 +6,7 @@ node_modules
 .DS_STORE
 *.log
 test-results.xml
+.vscodeDevUserData/User/workspaceStorage
+.vscodeDevUserData/rapid_render.json
+.vscodeDevUserData/machineid
+.vscodeDevUserData/CachedExtensions
