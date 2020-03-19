@@ -55,10 +55,6 @@ interface IPrettierEslintOptions {
    */
   filePath?: string;
   /**
-   * The text (JavaScript code) to format
-   */
-  text: string;
-  /**
    * The path to the eslint module to use.
    * Will default to require.resolve('eslint')
    */
@@ -86,7 +82,10 @@ interface IPrettierEslintOptions {
  * @param {IPrettierEslintOptions} options - Option bag for prettier-eslint.
  * @returns {string} the formatted code.
  */
-export type PrettierEslintFormat = (options: IPrettierEslintOptions) => string;
+export type PrettierEslintFormat = (
+  text: string,
+  options: IPrettierEslintOptions
+) => Promise<string>;
 
 export interface IPrettierStylelint {
   format: (options: IPrettierEslintOptions) => Promise<string>;

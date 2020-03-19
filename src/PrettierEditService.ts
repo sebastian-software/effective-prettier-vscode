@@ -308,46 +308,50 @@ export default class PrettierEditService implements Disposable {
     }
 
     this.loggingService.logInfo("Prettier Options:", prettierOptions);
+    this.loggingService.logInfo(`Language ID: ${languageId}`);
 
     if (this.languageResolver.doesLanguageSupportESLint(languageId)) {
       const prettierEslintModule = this.moduleResolver.getModuleInstance(
         fileName,
-        "prettier-eslint"
+        "@effective/prettier-eslint"
       );
       if (prettierEslintModule) {
-        this.loggingService.logInfo("Formatting using 'prettier-eslint'");
-        return this.safeExecution(() => {
-          const prettierEslintFormat = prettierEslintModule as PrettierEslintFormat;
-
-          return prettierEslintFormat({
-            filePath: fileName,
-            text
-          });
-        }, text);
+        this.loggingService.logInfo(
+          "Formatting using '@effective/prettier-eslint'"
+        );
+        const prettierEslintFormat = prettierEslintModule.formatText as PrettierEslintFormat;
+        return this.safeExecution(
+          () =>
+            prettierEslintFormat(text, {
+              filePath: fileName
+            }),
+          text
+        );
       }
     }
 
     if (this.languageResolver.doesParserSupportStylelint(parser)) {
       const prettierStylelintModule = this.moduleResolver.getModuleInstance(
         fileName,
-        "prettier-stylelint"
+        "@effective/prettier-stylelint"
       );
       if (prettierStylelintModule) {
-        this.loggingService.logInfo("Formatting using 'prettier-stylelint'");
-        const prettierStylelint = prettierStylelintModule as IPrettierStylelint;
+        this.loggingService.logInfo(
+          "Formatting using '@effective/prettier-stylelint'"
+        );
+        const prettierStylelint = prettierStylelintModule.formatText as PrettierEslintFormat;
         return this.safeExecution(
-          prettierStylelint.format({
-            filePath: fileName,
-            prettierOptions,
-            text
-          }),
+          () =>
+            prettierStylelint(text, {
+              filePath: fileName
+            }),
           text
         );
       }
     }
 
     return this.safeExecution(
-      () => prettierInstance.format(text, prettierOptions),
+      async () => prettierInstance.format(text, prettierOptions),
       text
     );
   }
@@ -360,26 +364,12 @@ export default class PrettierEditService implements Disposable {
    * @param fileName The filename of the current document
    * @returns {string} formatted text or defaultText
    */
-  private safeExecution(
-    cb: (() => string) | Promise<string>,
+  private async safeExecution(
+    cb: () => Promise<string>,
     defaultText: string
-  ): string | Promise<string> {
-    if (cb instanceof Promise) {
-      return cb
-        .then(returnValue => {
-          this.statusBarService.updateStatusBar(FormattingResult.Success);
-
-          return returnValue;
-        })
-        .catch((error: Error) => {
-          this.loggingService.logError("Error formatting document.", error);
-          this.statusBarService.updateStatusBar(FormattingResult.Error);
-
-          return defaultText;
-        });
-    }
+  ): Promise<string> {
     try {
-      const returnValue = cb();
+      const returnValue = await cb();
       this.statusBarService.updateStatusBar(FormattingResult.Success);
 
       return returnValue;
