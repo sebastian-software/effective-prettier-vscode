@@ -190,30 +190,6 @@ This extension will automatically detect when you have these extensions installe
 
 ## Settings
 
-### Prettier's Settings
-
-All prettier options can be configured directly in this extension. These settings are used as a fallback when no configuration file is present in your project, see the [configuration](#configuration) section of this document for more details. For reference on the options see the [prettier documentation](https://prettier.io/docs/en/options.html).
-
-```
-prettier.arrowParens
-prettier.bracketSpacing
-prettier.endOfLine
-prettier.htmlWhitespaceSensitivity
-prettier.insertPragma
-prettier.jsxBracketSameLine
-prettier.jsxSingleQuote
-prettier.printWidth
-prettier.proseWrap
-prettier.quoteProps
-prettier.requirePragma
-prettier.semi
-prettier.singleQuote
-prettier.tabWidth
-prettier.trailingComma
-prettier.useTabs
-prettier.vueIndentScriptAndStyle
-```
-
 ### Extension Settings
 
 These settings are specific to VS Code and need to be set in the VS Code settings file. See the [documentation](https://code.visualstudio.com/docs/getstarted/settings) for how to do that.
