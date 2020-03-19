@@ -110,14 +110,6 @@ You can use [VS Code settings](#prettiers-settings) to configure prettier. Setti
 
 > NOTE: If any local configuration file is present (i.e. `.prettierrc`) the VS Code settings will **NOT** be used.
 
-## Migrating from Versions 2.x
-
-Version 3.0 has a number of breaking changes. The settings for Linters have been removed. Linters are still supported, but the settings are no longer needed. See the [documentation on linters below](#linter-integration). See also [Error Messages](#error-messages)
-
-> NOTE: If you are seeing messages about legacy configuration settings, double check that you don't have any settings for the linters in your workspace or global settings. You must remove these. See also [Error Messages](#error-messages)
-
-Finally, there are a few smaller breaking changes, including removal of support for older versions of prettier. See the [CHANGELOG](https://github.com/prettier/prettier-vscode/blob/master/CHANGELOG.md) for details.
-
 ## Usage
 
 ### Using Command Palette (CMD/CTRL + Shift + P)
