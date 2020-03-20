@@ -196,6 +196,8 @@ export class ModuleResolver implements Disposable {
     }
 
     try {
+      this.loggingService.logInfo("ModulePath1: " + modulePath);
+
       modulePath = modulePath
         ? getWorkspaceRelativePath(fsPath, modulePath)
         : this.findPkgMem(fsPath, pkgName);
@@ -263,6 +265,7 @@ export class ModuleResolver implements Disposable {
         ? __non_webpack_require__
         : require;
     try {
+      process.chdir(path.dirname(moduleName));
       return r(moduleName);
     } catch (error) {
       this.loggingService.logError(
