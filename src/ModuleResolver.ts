@@ -265,7 +265,6 @@ export class ModuleResolver implements Disposable {
         ? __non_webpack_require__
         : require;
     try {
-      process.chdir(path.dirname(moduleName));
       return r(moduleName);
     } catch (error) {
       this.loggingService.logError(
