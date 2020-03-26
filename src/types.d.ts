@@ -62,10 +62,13 @@ interface IPrettierLintOptions {
 /**
  * Format javascript code with prettier-eslint.
  *
+ * @param text - Input code to format
+ * @param fileName - Filename of the input (used for config lookup)
  * @param options - Option bag for prettier-eslint/prettier-stylelint.
  * @returns the formatted code.
  */
 export type PrettierLintFormat = (
   text: string,
+  fileName: string,
   options: IPrettierLintOptions
 ) => Promise<string>;
