@@ -1,5 +1,5 @@
 {
-  "exclude": ["**/dist", "**/node_modules", "src/test", "test-fixtures"],
+  "exclude": ["**/dist", "**/node_modules", "src/test"],
   "compilerOptions": {
     "allowJs": true /* Allow javascript files to be compiled. */,
     "allowSyntheticDefaultImports": true /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */,
