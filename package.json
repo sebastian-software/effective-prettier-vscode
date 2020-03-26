@@ -66,7 +66,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "lint": "tsc --noEmit",
-    "format": "prettier --write '**/*.{ts,json,md,yml,js}'",
+    "format": "prettier --write '**/*.{ts,json,md,yml,js}' && prettier-eslint '**/*.{ts,js}'",
     "vscode:package": "vsce package",
     "vscode:publish": "vsce publish",
     "vscode:prepublish": "preppy",
@@ -79,6 +79,9 @@
     }
   },
   "lint-staged": {
+    "**/*.{ts,js}": [
+      "prettier-eslint"
+    ],
     "**/*.{ts,json,md,yml,js}": [
       "prettier --write"
     ]
@@ -91,6 +94,7 @@
     "@babel/plugin-transform-runtime": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
     "@babel/preset-typescript": "^7.9.0",
+    "@effective/eslint-config": "^2.1.0",
     "@types/glob": "^7.1.1",
     "@types/mocha": "^7.0.2",
     "@types/node": "^13",
