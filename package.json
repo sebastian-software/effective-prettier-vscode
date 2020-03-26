@@ -65,12 +65,8 @@
   "icon": "icon.png",
   "main": "./dist/index.js",
   "scripts": {
-    "clean": "node ./scripts/clean.js",
     "lint": "tsc --noEmit",
-    "pretest": "yarn test-compile && cd test-fixtures/eslint && yarn install && cd ../plugins && yarn install && cd ../outdated && yarn install",
-    "prettier": "prettier --write '**/*.{ts,json,md,yml,js}'",
-    "test-compile": "yarn clean && tsc -p ./ && yarn build",
-    "test": "node ./out/test/runTests.js",
+    "format": "prettier --write '**/*.{ts,json,md,yml,js}'",
     "vscode:package": "vsce package",
     "vscode:publish": "vsce publish",
     "vscode:prepublish": "preppy",
@@ -89,6 +85,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.9.0",
     "@babel/plugin-transform-runtime": "^7.9.0",

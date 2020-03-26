@@ -1,7 +1,7 @@
 /* eslint-disable import/no-commonjs */
-module.exports = api => {
+module.exports = (api) => {
   const env = api.env();
-  const caller = api.caller(inst => (inst && inst.name) || "any");
+  const caller = api.caller((inst) => (inst && inst.name) || "any");
 
   const isBundler = caller === "rollup-plugin-babel";
   const isCli = caller === "@babel/node";
@@ -9,7 +9,9 @@ module.exports = api => {
   const modules = (isTest && !isBundler) || isCli ? "commonjs" : false;
   const isUmd = /\b(umd)\b/.exec(env);
 
-  // console.log(`>>> Babel: Env="${env}" Caller="${caller}" Modules="${modules}"`)
+  console.log(
+    `>>> Babel: Env="${env}" Caller="${caller}" Modules="${modules}"`
+  );
 
   return {
     sourceMaps: true,
@@ -18,8 +20,8 @@ module.exports = api => {
         "@babel/proposal-object-rest-spread",
         {
           useBuiltIns: true,
-          loose: true
-        }
+          loose: true,
+        },
       ],
       ["@babel/plugin-proposal-class-properties", { loose: true }],
       isUmd
@@ -28,9 +30,9 @@ module.exports = api => {
             "@babel/transform-runtime",
             {
               helpers: true,
-              regenerator: false
-            }
-          ]
+              regenerator: false,
+            },
+          ],
     ].filter(Boolean),
     presets: [
       [
@@ -41,9 +43,9 @@ module.exports = api => {
           loose: true,
           modules,
           targets: {
-            node: 10
-          }
-        }
+            node: 10,
+          },
+        },
       ],
       [
         "@babel/typescript",
@@ -51,9 +53,9 @@ module.exports = api => {
           // We like JSX everywhere. No reason why we have to deal with
           // legacy type assertion supported in earlier versions.
           allExtensions: true,
-          isTSX: true
-        }
-      ]
-    ]
+          isTSX: true,
+        },
+      ],
+    ],
   };
 };
