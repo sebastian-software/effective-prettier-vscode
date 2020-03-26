@@ -1,16 +1,15 @@
-import * as prettier from "prettier";
+import * as prettier from "prettier"
+import { window } from "vscode"
 
-import { window } from "vscode";
-
-type LogLevel = "INFO" | "WARN" | "ERROR" | "NONE";
+type LogLevel = "INFO" | "WARN" | "ERROR" | "NONE"
 
 export class LoggingService {
-  private outputChannel = window.createOutputChannel("Prettier");
+  private outputChannel = window.createOutputChannel("Prettier")
 
-  private logLevel: LogLevel = "INFO";
+  private logLevel: LogLevel = "INFO"
 
   public setOutputLevel(logLevel: LogLevel) {
-    this.logLevel = logLevel;
+    this.logLevel = logLevel
   }
 
   /**
@@ -19,16 +18,12 @@ export class LoggingService {
    * @param message The message to append to the output channel
    */
   public logInfo(message: string, data?: object): void {
-    if (
-      this.logLevel === "NONE" ||
-      this.logLevel === "WARN" ||
-      this.logLevel === "ERROR"
-    ) {
-      return;
+    if (this.logLevel === "NONE" || this.logLevel === "WARN" || this.logLevel === "ERROR") {
+      return
     }
-    this.logMessage(message, "INFO");
+    this.logMessage(message, "INFO")
     if (data) {
-      this.logObject(data);
+      this.logObject(data)
     }
   }
 
@@ -39,29 +34,29 @@ export class LoggingService {
    */
   public logWarning(message: string, data?: object): void {
     if (this.logLevel === "NONE" || this.logLevel === "ERROR") {
-      return;
+      return
     }
-    this.logMessage(message, "WARN");
+    this.logMessage(message, "WARN")
     if (data) {
-      this.logObject(data);
+      this.logObject(data)
     }
   }
 
   public logError(message: string, error?: Error) {
     if (this.logLevel === "NONE") {
-      return;
+      return
     }
-    this.logMessage(message, "ERROR");
+    this.logMessage(message, "ERROR")
     if (error?.message) {
-      this.logMessage(error.message, "ERROR");
+      this.logMessage(error.message, "ERROR")
     }
     if (error?.stack) {
-      this.outputChannel.appendLine(error.stack);
+      this.outputChannel.appendLine(error.stack)
     }
   }
 
   public show() {
-    this.outputChannel.show();
+    this.outputChannel.show()
   }
 
   private logObject(data: object): void {
@@ -69,8 +64,8 @@ export class LoggingService {
       .format(JSON.stringify(data, null, 2), {
         parser: "json"
       })
-      .trim();
-    this.outputChannel.appendLine(message);
+      .trim()
+    this.outputChannel.appendLine(message)
   }
 
   /**
@@ -79,7 +74,7 @@ export class LoggingService {
    * @param message The message to append to the output channel
    */
   private logMessage(message: string, logLevel: LogLevel): void {
-    const title = new Date().toLocaleTimeString();
-    this.outputChannel.appendLine(`["${logLevel}" - ${title}] ${message}`);
+    const title = new Date().toLocaleTimeString()
+    this.outputChannel.appendLine(`["${logLevel}" - ${title}] ${message}`)
   }
 }

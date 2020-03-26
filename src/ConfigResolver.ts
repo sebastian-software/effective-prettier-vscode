@@ -1,14 +1,15 @@
-import * as prettier from "prettier";
-import { LoggingService } from "./LoggingService";
+import * as prettier from "prettier"
+
+import { LoggingService } from "./LoggingService"
 
 interface IResolveConfigResult {
-  config: prettier.Options | null;
-  error?: Error;
+  config: prettier.Options | null
+  error?: Error
 }
 
 export interface RangeFormattingOptions {
-  rangeStart: number;
-  rangeEnd: number;
+  rangeStart: number
+  rangeEnd: number
 }
 
 export class ConfigResolver {
@@ -23,10 +24,10 @@ export class ConfigResolver {
     const { config: configOptions, error } = await this.resolveConfig(
       fileName,
       resolveConfigOptions
-    );
+    )
 
     if (error) {
-      return { error };
+      return { error }
     }
 
     const options: prettier.Options = {
@@ -35,23 +36,24 @@ export class ConfigResolver {
         filepath: fileName,
         parser: parser as prettier.BuiltInParserName
       },
-      ...(rangeFormattingOptions || {}),
-      ...(configOptions || {})
-    };
+      ...rangeFormattingOptions || {},
+      ...configOptions || {}
+    }
 
-    return { options };
+    return { options }
   }
 
   /**
    * Check if a given file has an associated prettier config.
+   *
    * @param filePath file's path
    */
   public async checkHasPrettierConfig(filePath: string) {
-    const { config, error } = await this.resolveConfig(filePath);
+    const { config, error } = await this.resolveConfig(filePath)
     if (error) {
-      throw error;
+      throw error
     }
-    return config !== null;
+    return config !== null
   }
 
   /**
@@ -64,10 +66,10 @@ export class ConfigResolver {
     options?: prettier.ResolveConfigOptions
   ): Promise<IResolveConfigResult> {
     try {
-      const config = await prettier.resolveConfig(filePath, options);
-      return { config };
+      const config = await prettier.resolveConfig(filePath, options)
+      return { config }
     } catch (error) {
-      return { config: null, error };
+      return { config: null, error }
     }
   }
 }

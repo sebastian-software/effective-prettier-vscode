@@ -6,14 +6,12 @@ import {
   Range,
   TextDocument,
   TextEdit
-} from "vscode";
+} from "vscode"
 
-import { RangeFormattingOptions } from "./ConfigResolver";
+import { RangeFormattingOptions } from "./ConfigResolver"
 
 export class PrettierEditProvider
-  implements
-    DocumentRangeFormattingEditProvider,
-    DocumentFormattingEditProvider {
+implements DocumentRangeFormattingEditProvider, DocumentFormattingEditProvider {
   constructor(
     private provideEdits: (
       document: TextDocument,
@@ -30,7 +28,7 @@ export class PrettierEditProvider
     return this.provideEdits(document, {
       rangeEnd: document.offsetAt(range.end),
       rangeStart: document.offsetAt(range.start)
-    });
+    })
   }
 
   public async provideDocumentFormattingEdits(
@@ -38,6 +36,6 @@ export class PrettierEditProvider
     options: FormattingOptions,
     token: CancellationToken
   ): Promise<TextEdit[]> {
-    return this.provideEdits(document);
+    return this.provideEdits(document)
   }
 }

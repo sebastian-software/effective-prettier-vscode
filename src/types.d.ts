@@ -1,10 +1,10 @@
-import * as prettier from "prettier";
+import * as prettier from "prettier"
 
-type PrettierModule = typeof prettier;
+type PrettierModule = typeof prettier
 
-type TrailingCommaOption = "none" | "es5" | "all";
+type TrailingCommaOption = "none" | "es5" | "all"
 
-export type PackageManagers = "npm" | "yarn" | "pnpm";
+export type PackageManagers = "npm" | "yarn" | "pnpm"
 
 /**
  * prettier-vscode specific configuration
@@ -13,38 +13,38 @@ interface IExtensionConfig {
   /**
    * Path to '.prettierignore' or similar.
    */
-  ignorePath: string;
+  ignorePath: string
   /**
    * Path to prettier module.
    */
-  prettierPath: string | undefined;
+  prettierPath: string | undefined
   /**
    * If true will skip formatting if a prettier config isn't found.
    */
-  requireConfig: boolean;
+  requireConfig: boolean
   /**
    * The package manager to use when resolving global modules.
    */
-  packageManager: PackageManagers;
+  packageManager: PackageManagers
   /**
    * Array of language IDs to ignore
    */
-  disableLanguages: string[];
+  disableLanguages: string[]
   /**
    * If true, take into account the .editorconfig file when resolving configuration.
    */
-  useEditorConfig: boolean;
+  useEditorConfig: boolean
   /**
    * If true, this extension will attempt to use global npm or yarn modules.
    */
-  resolveGlobalModules: boolean;
+  resolveGlobalModules: boolean
 }
 /**
  * Configuration for prettier-vscode
  */
-export type PrettierVSCodeConfig = IExtensionConfig & prettier.Options;
+export type PrettierVSCodeConfig = IExtensionConfig & prettier.Options
 
-type LogLevel = "error" | "warn" | "info" | "debug" | "trace";
+type LogLevel = "error" | "warn" | "info" | "debug" | "trace"
 
 interface IPrettierLintOptions {
   /**
@@ -52,11 +52,11 @@ interface IPrettierLintOptions {
    * can be used in lieu of `eslintConfig` (eslint will be used to find the
    * relevant config for the file).
    */
-  filePath?: string;
+  filePath?: string
   /**
    * Whether to use verbose logging output
    */
-  verbose: boolean;
+  verbose: boolean
 }
 
 /**
@@ -71,4 +71,4 @@ export type PrettierLintFormat = (
   text: string,
   fileName: string,
   options: IPrettierLintOptions
-) => Promise<string>;
+) => Promise<string>

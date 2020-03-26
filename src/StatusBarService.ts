@@ -1,15 +1,16 @@
 import {
   Disposable,
-  languages,
   StatusBarAlignment,
   StatusBarItem,
   TextEditor,
+  languages,
   window
-} from "vscode";
-import { LanguageResolver } from "./LanguageResolver";
-import { LoggingService } from "./LoggingService";
-import { PrettierVSCodeConfig } from "./types";
-import { getConfig } from "./util";
+} from "vscode"
+
+import { LanguageResolver } from "./LanguageResolver"
+import { LoggingService } from "./LoggingService"
+import { PrettierVSCodeConfig } from "./types"
+import { getConfig } from "./util"
 
 export enum FormattingResult {
   Success = "check",
@@ -18,28 +19,25 @@ export enum FormattingResult {
 }
 
 export class StatusBarService {
-  private statusBarItem: StatusBarItem;
+  private statusBarItem: StatusBarItem
   constructor(
     private languageResolver: LanguageResolver,
     private loggingService: LoggingService
   ) {
     // Setup the statusBarItem
-    this.statusBarItem = window.createStatusBarItem(
-      StatusBarAlignment.Right,
-      -1
-    );
-    this.statusBarItem.text = "Prettier";
-    this.statusBarItem.command = "prettier.openOutput";
+    this.statusBarItem = window.createStatusBarItem(StatusBarAlignment.Right, -1)
+    this.statusBarItem.text = "Prettier"
+    this.statusBarItem.command = "prettier.openOutput"
 
-    this.toggleStatusBarItem(window.activeTextEditor);
+    this.toggleStatusBarItem(window.activeTextEditor)
   }
   public registerDisposables(): Disposable[] {
     return [
       // Keep track whether to show/hide the statusbar
-      window.onDidChangeActiveTextEditor(editor => {
-        this.toggleStatusBarItem(editor);
+      window.onDidChangeActiveTextEditor((editor) => {
+        this.toggleStatusBarItem(editor)
       })
-    ];
+    ]
   }
 
   /**
@@ -48,8 +46,8 @@ export class StatusBarService {
    * @param icon The the icon to use
    */
   public updateStatusBar(result: FormattingResult): void {
-    this.statusBarItem.text = `Prettier: $(${result.toString()})`;
-    this.statusBarItem.show();
+    this.statusBarItem.text = `Prettier: $(${result.toString()})`
+    this.statusBarItem.show()
   }
 
   private toggleStatusBarItem(editor: TextEditor | undefined): void {
@@ -58,37 +56,30 @@ export class StatusBarService {
       // It also triggers when we focus on the output panel or on the debug panel
       // Both are seen as an "editor".
       // The following check will ignore such panels
-      if (
-        ["debug", "output"].some(part => editor.document.uri.scheme === part)
-      ) {
-        return;
+      if ([ "debug", "output" ].some((part) => editor.document.uri.scheme === part)) {
+        return
       }
 
-      this.loggingService.setOutputLevel("NONE"); // No logs here, they are annoying.
+      this.loggingService.setOutputLevel("NONE") // No logs here, they are annoying.
 
-      const filePath = editor.document.isUntitled
-        ? undefined
-        : editor.document.fileName;
+      const filePath = editor.document.isUntitled ? undefined : editor.document.fileName
       const score = languages.match(
         this.languageResolver.allEnabledLanguages(filePath),
         editor.document
-      );
+      )
       const disabledLanguages: PrettierVSCodeConfig["disableLanguages"] = getConfig(
         editor.document.uri
-      ).disableLanguages;
+      ).disableLanguages
 
-      if (
-        score > 0 &&
-        !disabledLanguages.includes(editor.document.languageId)
-      ) {
-        this.statusBarItem.show();
+      if (score > 0 && !disabledLanguages.includes(editor.document.languageId)) {
+        this.statusBarItem.show()
       } else {
-        this.statusBarItem.hide();
+        this.statusBarItem.hide()
       }
     } else {
-      this.statusBarItem.hide();
+      this.statusBarItem.hide()
     }
 
-    this.loggingService.setOutputLevel("INFO"); // Resume logging
+    this.loggingService.setOutputLevel("INFO") // Resume logging
   }
 }

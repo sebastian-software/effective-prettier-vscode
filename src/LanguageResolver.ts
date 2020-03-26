@@ -1,7 +1,7 @@
-import * as prettier from "prettier";
+import * as prettier from "prettier"
+import { Uri } from "vscode"
 
-import { Uri } from "vscode";
-import { ModuleResolver } from "./ModuleResolver";
+import { ModuleResolver } from "./ModuleResolver"
 
 const ESLINT_SUPPORTED_LANGUAGES = [
   "javascript",
@@ -9,9 +9,9 @@ const ESLINT_SUPPORTED_LANGUAGES = [
   "typescript",
   "typescriptreact",
   "vue"
-];
+]
 
-const STYLE_PARSERS = ["postcss", "css", "less", "scss"];
+const STYLE_PARSERS = ["postcss", "css", "less", "scss"]
 
 export class LanguageResolver {
   constructor(private moduleResolver: ModuleResolver) {}
@@ -22,31 +22,29 @@ export class LanguageResolver {
     if (uri.scheme === "untitled" && languageId === "html") {
       // This is a workaround for the HTML language when it is unsaved. By default,
       // the Angular parser matches first because both register the language 'html'
-      return ["html"];
+      return ["html"]
     }
     const language = this.getSupportLanguages(uri.fsPath).find(
-      lang =>
+      (lang) =>
         lang &&
         lang.extensions &&
         Array.isArray(lang.vscodeLanguageIds) &&
         lang.vscodeLanguageIds.includes(languageId)
-    );
+    )
     if (!language) {
-      return [];
+      return []
     }
-    return language.parsers;
+    return language.parsers
   }
 
   public allEnabledLanguages(fsPath?: string): string[] {
-    const enabledLanguages: string[] = [];
-    this.getSupportLanguages(fsPath).forEach(lang => {
+    const enabledLanguages: string[] = []
+    this.getSupportLanguages(fsPath).forEach((lang) => {
       if (lang && lang.vscodeLanguageIds) {
-        enabledLanguages.push(...lang.vscodeLanguageIds);
+        enabledLanguages.push(...lang.vscodeLanguageIds)
       }
-    });
-    return enabledLanguages.filter((value, index, self) => {
-      return self.indexOf(value) === index;
-    });
+    })
+    return enabledLanguages.filter((value, index, self) => self.indexOf(value) === index)
   }
 
   public rangeSupportedLanguages(): string[] {
@@ -57,19 +55,19 @@ export class LanguageResolver {
       "typescriptreact",
       "json",
       "graphql"
-    ];
+    ]
   }
 
   public doesLanguageSupportESLint(languageId: string) {
-    return ESLINT_SUPPORTED_LANGUAGES.includes(languageId);
+    return ESLINT_SUPPORTED_LANGUAGES.includes(languageId)
   }
 
   public doesParserSupportStylelint(parser: string) {
-    return STYLE_PARSERS.includes(parser);
+    return STYLE_PARSERS.includes(parser)
   }
 
   private getSupportLanguages(fsPath?: string) {
-    const prettierInstance = this.moduleResolver.getPrettierInstance(fsPath);
-    return prettierInstance.getSupportInfo().languages;
+    const prettierInstance = this.moduleResolver.getPrettierInstance(fsPath)
+    return prettierInstance.getSupportInfo().languages
   }
 }
