@@ -1,6 +1,5 @@
 import { commands, ExtensionContext } from "vscode";
 import { ConfigResolver } from "./ConfigResolver";
-import { IgnorerResolver } from "./IgnorerResolver";
 import { LanguageResolver } from "./LanguageResolver";
 import { LoggingService } from "./LoggingService";
 import { ModuleResolver } from "./ModuleResolver";
@@ -28,7 +27,6 @@ export function activate(context: ExtensionContext) {
     }
   );
 
-  const ignoreResolver = new IgnorerResolver(loggingService);
   const configResolver = new ConfigResolver(loggingService);
   const notificationService = new NotificationService(loggingService);
 
@@ -47,7 +45,6 @@ export function activate(context: ExtensionContext) {
   const editService = new PrettierEditService(
     moduleResolver,
     languageResolver,
-    ignoreResolver,
     configResolver,
     loggingService,
     notificationService,

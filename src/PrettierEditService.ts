@@ -10,7 +10,6 @@ import {
   workspace,
 } from "vscode";
 import { ConfigResolver, RangeFormattingOptions } from "./ConfigResolver";
-import { IgnorerResolver } from "./IgnorerResolver";
 import { LanguageResolver } from "./LanguageResolver";
 import { LoggingService } from "./LoggingService";
 import { INVALID_PRETTIER_CONFIG } from "./message";
@@ -47,7 +46,6 @@ export default class PrettierEditService implements Disposable {
   constructor(
     private moduleResolver: ModuleResolver,
     private languageResolver: LanguageResolver,
-    private ignoreResolver: IgnorerResolver,
     private configResolver: ConfigResolver,
     private loggingService: LoggingService,
     private notificationService: NotificationService,
@@ -239,8 +237,6 @@ export default class PrettierEditService implements Disposable {
       return;
     }
 
-    const ignorePath = this.ignoreResolver.getIgnorePath(fileName);
-
     const prettierInstance = this.moduleResolver.getPrettierInstance(fileName, {
       showNotifications: true,
     });
@@ -248,7 +244,6 @@ export default class PrettierEditService implements Disposable {
     let fileInfo: prettier.FileInfoResult | undefined;
     if (fileName) {
       fileInfo = await prettierInstance.getFileInfo(fileName, {
-        ignorePath,
         resolveConfig: true, // Fix for 1.19 (https://prettier.io/blog/2019/11/09/1.19.0.html#api)
       });
       this.loggingService.logInfo("File Info:", fileInfo);
