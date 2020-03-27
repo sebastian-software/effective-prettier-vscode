@@ -829,10 +829,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@effective/eslint-config@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@effective/eslint-config/-/eslint-config-2.1.0.tgz#eaaf978bdbac1d3c9b8f36ace519f3cd3cbb692d"
-  integrity sha512-J24IDkKdWRgjXK5/CDMe5jkCehNfaarbGemd44IFxdBiXF0UscS5DnAiPljox09LsPySfrFNH+GFZGYkBg8Vkg==
+"@effective/eslint-config@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@effective/eslint-config/-/eslint-config-2.2.0.tgz#391d6d7b26dc603cc27b51412bc3ae4a7af13140"
+  integrity sha512-jZq6htt5KAx96CKvELSAgo7NRR2iF8YEsWEni4dzXeH0tcLzaXDOqUDM77IBU0UjW5qqReeXPOuLUgfvVoiSQg==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^2.25.0"
     "@typescript-eslint/parser" "^2.25.0"
@@ -847,9 +847,9 @@
     eslint-plugin-jsdoc "^22.1.0"
     eslint-plugin-jsx-a11y "^6.2.3"
     eslint-plugin-react "^7.19.0"
-    eslint-plugin-react-hooks "^2.5.1"
+    eslint-plugin-react-hooks "^3.0.0"
     eslint-plugin-shopify-lean "^1.1.0"
-    eslint-plugin-unicorn "^17.2.0"
+    eslint-plugin-unicorn "^18.0.1"
 
 "@effective/prettier-eslint@^1.2.0":
   version "1.2.0"
@@ -2330,10 +2330,10 @@ eslint-plugin-jsx-a11y@^6.2.3:
     has "^1.0.3"
     jsx-ast-utils "^2.2.1"
 
-eslint-plugin-react-hooks@^2.5.1:
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-2.5.1.tgz#4ef5930592588ce171abeb26f400c7fbcbc23cd0"
-  integrity sha512-Y2c4b55R+6ZzwtTppKwSmK/Kar8AdLiC2f9NADCuxbcTgPPg41Gyqa6b9GppgXSvCtkRw43ZE86CT5sejKC6/g==
+eslint-plugin-react-hooks@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-3.0.0.tgz#9e80c71846eb68dd29c3b21d832728aa66e5bd35"
+  integrity sha512-EjxTHxjLKIBWFgDJdhKKzLh5q+vjTFrqNZX36uIxWS4OfyXe5DawqPj3U5qeJ1ngLwatjzQnmR0Lz0J0YH3kxw==
 
 eslint-plugin-react@^7.19.0:
   version "7.19.0"
@@ -2363,10 +2363,10 @@ eslint-plugin-shopify-lean@^1.1.0:
     pkg-dir "4.2.0"
     pluralize "^8.0.0"
 
-eslint-plugin-unicorn@^17.2.0:
-  version "17.2.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-unicorn/-/eslint-plugin-unicorn-17.2.0.tgz#8f147ba24d417dc5de948c7df7d006108a37a540"
-  integrity sha512-0kYjrywf0kQxevFz571KrDfYMIRZ5Kq6dDgPU1EEBFeC181r+fAaPatBScWX+/hisKJ4+eCRFebxTeVylsSYmw==
+eslint-plugin-unicorn@^18.0.1:
+  version "18.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-unicorn/-/eslint-plugin-unicorn-18.0.1.tgz#8d3285ffa57b2f6b07550b94e62228d93bf61813"
+  integrity sha512-Y4bgygek4x4ogeMcSHr6MZi3frBPZ80eIpMOsxew7jAblb53OYflpRh0an62Z6jv/fw7D3TkXauqLOBWbT9adg==
   dependencies:
     ci-info "^2.0.0"
     clean-regexp "^1.0.0"
@@ -2375,10 +2375,10 @@ eslint-plugin-unicorn@^17.2.0:
     import-modules "^2.0.0"
     lodash "^4.17.15"
     read-pkg-up "^7.0.1"
-    regexp-tree "^0.1.20"
+    regexp-tree "^0.1.21"
     reserved-words "^0.1.2"
     safe-regex "^2.1.1"
-    semver "^7.1.2"
+    semver "^7.1.3"
 
 eslint-scope@^5.0.0:
   version "5.0.0"
@@ -4920,7 +4920,7 @@ regex-not@^1.0.2:
     extend-shallow "^3.0.2"
     safe-regex "^1.1.0"
 
-regexp-tree@^0.1.20, regexp-tree@~0.1.1:
+regexp-tree@^0.1.21, regexp-tree@~0.1.1:
   version "0.1.21"
   resolved "https://registry.yarnpkg.com/regexp-tree/-/regexp-tree-0.1.21.tgz#55e2246b7f7d36f1b461490942fa780299c400d7"
   integrity sha512-kUUXjX4AnqnR8KRTCrayAo9PzYMRKmVoGgaz2tBuz0MF3g1ZbGebmtW0yFHfFK9CmBjQKeYIgoL22pFLBJY7sw==
@@ -5240,7 +5240,7 @@ semver@7.0.0:
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.0.0.tgz#5f3ca35761e47e05b206c6daff2cf814f0316b8e"
   integrity sha512-+GB6zVA9LWh6zovYQLALHwv5rb2PHGlJi3lfiqIHxR0uuwCgefcOJc59v9fv1w8GbStwxuuqqAjI9NMAOOgq1A==
 
-semver@7.1.3, semver@^7.1.2:
+semver@7.1.3, semver@^7.1.3:
   version "7.1.3"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.1.3.tgz#e4345ce73071c53f336445cfc19efb1c311df2a6"
   integrity sha512-ekM0zfiA9SCBlsKa2X1hxyxiI4L3B6EbVJkkdgQXnSEEaHlGdvyodMruTiulSRWMMB4NeIuYNMC9rTKTz97GxA==
