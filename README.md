@@ -37,16 +37,12 @@
 </p>
 
 <p align="center">
-  <a href="https://dev.azure.com/prettier/prettier-vscode/_build?definitionId=9">
-    <img alt="Azure Pipelines Build Status" src="https://dev.azure.com/prettier/prettier-vscode/_apis/build/status/prettier.prettier-vscode?branchName=master"></a>
   <a href="https://marketplace.visualstudio.com/items?itemName=sebastian-software.effective-prettier-vscode">
     <img alt="VS Code Marketplace Downloads" src="https://img.shields.io/visual-studio-marketplace/d/sebastian-software.effective-prettier-vscode"></a>
   <a href="https://marketplace.visualstudio.com/items?itemName=sebastian-software.effective-prettier-vscode">
     <img alt="VS Code Marketplace Installs" src="https://img.shields.io/visual-studio-marketplace/i/sebastian-software.effective-prettier-vscode"></a>
   <a href="#badge">
-    <img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square"></a>
-  <a href="https://twitter.com/PrettierCode">
-    <img alt="Follow Prettier on Twitter" src="https://img.shields.io/twitter/follow/prettiercode.svg?label=follow+prettier&style=flat-square"></a>
+    <img alt="code style: ✪ prettier" src="https://img.shields.io/badge/code_style-✪_prettier-ff69b4.svg?style=flat-square"></a>
 </p>
 
 ## Installation
