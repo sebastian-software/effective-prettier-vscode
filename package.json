@@ -10,8 +10,8 @@
     "url": "https://www.sebastian-software.de"
   },
   "galleryBanner": {
-    "color": "#ffe04b",
-    "theme": "light"
+    "color": "#00596C",
+    "theme": "dark"
   },
   "homepage": "https://marketplace.visualstudio.com/items?itemName=sebastian-software.effective-prettier-vscode",
   "license": "Apache-2.0",
