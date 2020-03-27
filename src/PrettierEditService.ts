@@ -194,23 +194,6 @@ export default class PrettierEditService implements Disposable {
 
     const vscodeConfig = getConfig(uri)
 
-    try {
-      const hasConfig = await this.configResolver.checkHasPrettierConfig(fileName)
-
-      if (!isUntitled && !hasConfig && vscodeConfig.requireConfig) {
-        this.loggingService.logInfo(
-          "Require config set to true and no config present. Skipping file."
-        )
-        this.statusBarService.updateStatusBar(FormattingResult.Ignore)
-        return
-      }
-    } catch (error) {
-      this.loggingService.logError("Invalid prettier configuration file detected.", error)
-      this.notificationService.showErrorMessage(INVALID_PRETTIER_CONFIG)
-      this.statusBarService.updateStatusBar(FormattingResult.Error)
-      return
-    }
-
     const prettierInstance = this.moduleResolver.getPrettierInstance(fileName, {
       showNotifications: true
     })

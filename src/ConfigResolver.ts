@@ -44,19 +44,6 @@ export class ConfigResolver {
   }
 
   /**
-   * Check if a given file has an associated prettier config.
-   *
-   * @param filePath file's path
-   */
-  public async checkHasPrettierConfig(filePath: string) {
-    const { config, error } = await this.resolveConfig(filePath)
-    if (error) {
-      throw error
-    }
-    return config !== null
-  }
-
-  /**
    * Resolves the prettier config for the given file.
    *
    * @param filePath file's path

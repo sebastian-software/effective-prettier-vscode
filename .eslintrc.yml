@@ -1,2 +1,5 @@
 extends:
   - "@effective"
+rules:
+  # Confuses some more modern syntax with error
+  no-unused-expressions: off
