@@ -2,7 +2,7 @@
   "name": "effective-prettier-vscode",
   "displayName": "✪ Effective Prettier - Code Formatter",
   "description": "Code Formatter using Prettier + ESLint/Stylelint",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "sebastian-software",
   "author": {
     "name": "Sebastian Software",
@@ -69,7 +69,7 @@
     "format": "prettier --write '**/*.{ts,json,md,yml,js}' && prettier-eslint '**/*.{ts,js}'",
     "vscode:package": "vsce package",
     "vscode:publish": "vsce publish",
-    "vscode:prepublish": "preppy",
+    "vscode:prepublish": "preppy --quiet",
     "watch": "preppy --watch",
     "build": "preppy"
   },
