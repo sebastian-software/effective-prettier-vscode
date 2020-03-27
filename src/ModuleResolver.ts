@@ -13,7 +13,6 @@ import { LoggingService } from "./LoggingService"
 import { FAILED_TO_LOAD_MODULE_MESSAGE } from "./message"
 import { NotificationService } from "./NotificationService"
 import { PrettierModule } from "./types"
-import { getConfig, getWorkspaceRelativePath } from "./util"
 
 interface ModuleResult<T> {
   moduleInstance: T | undefined
@@ -50,19 +49,16 @@ export class ModuleResolver implements Disposable {
       return prettier
     }
 
-    const { prettierPath } = getConfig()
-
-    const { moduleInstance, modulePath } = this.requireLocalPkg<PrettierModule>(
+    const { moduleInstance } = this.requireLocalPkg<PrettierModule>(
       fileName,
       "prettier",
-      prettierPath,
       options
     )
 
     return moduleInstance || prettier
   }
 
-  public getModuleInstance(fsPath: string, packageName): any {
+  public getModuleInstance(fsPath: string, packageName: string): any {
     const { moduleInstance } = this.requireLocalPkg<any>(fsPath, packageName)
     return moduleInstance
   }
@@ -93,20 +89,11 @@ export class ModuleResolver implements Disposable {
    */
   private requireLocalPkg<T>(
     fsPath: string,
-    packageName,
-    modulePath?: string,
+    packageName: string,
     options?: ModuleResolutionOptions
   ): ModuleResult<T> {
-    if (modulePath === "") {
-      modulePath = undefined
-    }
-
     try {
-      this.loggingService.logInfo("ModulePath1: " + modulePath)
-
-      modulePath = modulePath ?
-        getWorkspaceRelativePath(fsPath, modulePath) :
-        this.findPkgMem(fsPath, packageName)
+      const modulePath = this.findPkgMem(fsPath, packageName)
 
       if (modulePath !== undefined) {
         const moduleInstance = this.loadNodeModule(modulePath)

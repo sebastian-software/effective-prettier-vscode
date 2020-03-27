@@ -1,34 +1,12 @@
-import * as prettier from "prettier"
+import prettier from "prettier"
 
 type PrettierModule = typeof prettier
 
 type TrailingCommaOption = "none" | "es5" | "all"
 
-/**
- * prettier-vscode specific configuration
- */
-interface IExtensionConfig {
-  /**
-   * Path to '.prettierignore' or similar.
-   */
-  ignorePath: string
-  /**
-   * Path to prettier module.
-   */
-  prettierPath: string | undefined
-  /**
-   * If true will skip formatting if a prettier config isn't found.
-   */
-  requireConfig: boolean
-}
-/**
- * Configuration for prettier-vscode
- */
-export type PrettierVSCodeConfig = IExtensionConfig & prettier.Options
-
 type LogLevel = "error" | "warn" | "info" | "debug" | "trace"
 
-interface IPrettierLintOptions {
+interface PrettierLintOptions {
   /**
    * The path of the file being formatted
    * can be used in lieu of `eslintConfig` (eslint will be used to find the
@@ -52,5 +30,5 @@ interface IPrettierLintOptions {
 export type PrettierLintFormat = (
   text: string,
   fileName: string,
-  options: IPrettierLintOptions
+  options: PrettierLintOptions
 ) => Promise<string>

@@ -128,19 +128,7 @@
     "configuration": {
       "type": "object",
       "title": "%ext.config.title%",
-      "properties": {
-        "prettier.requireConfig": {
-          "type": "boolean",
-          "default": false,
-          "markdownDescription": "%ext.config.requireConfig%",
-          "scope": "resource"
-        },
-        "prettier.prettierPath": {
-          "type": "string",
-          "markdownDescription": "%ext.config.prettierPath%",
-          "scope": "resource"
-        }
-      }
+      "properties": {}
     },
     "jsonValidation": [
       {
