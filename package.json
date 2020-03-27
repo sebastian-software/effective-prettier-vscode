@@ -135,12 +135,6 @@
           "markdownDescription": "%ext.config.requireConfig%",
           "scope": "resource"
         },
-        "prettier.useEditorConfig": {
-          "type": "boolean",
-          "default": true,
-          "markdownDescription": "%ext.config.useEditorConfig%",
-          "scope": "resource"
-        },
         "prettier.prettierPath": {
           "type": "string",
           "markdownDescription": "%ext.config.prettierPath%",

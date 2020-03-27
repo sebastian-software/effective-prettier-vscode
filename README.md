@@ -177,10 +177,6 @@ Files which match will not be formatted. Set to `null` to not read ignore files.
 
 Supply a custom path to the prettier module.
 
-#### prettier.useEditorConfig (default: `true`)
-
-Whether or not to take .editorconfig into account when parsing configuration. See the [prettier.resolveConfig docs](https://prettier.io/docs/en/api.html) for details.
-
 ## Error Messages
 
 **Failed to load module. If you have prettier or plugins referenced in package.json, ensure you have run `npm install`**

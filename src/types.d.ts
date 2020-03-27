@@ -20,10 +20,6 @@ interface IExtensionConfig {
    * If true will skip formatting if a prettier config isn't found.
    */
   requireConfig: boolean
-  /**
-   * If true, take into account the .editorconfig file when resolving configuration.
-   */
-  useEditorConfig: boolean
 }
 /**
  * Configuration for prettier-vscode

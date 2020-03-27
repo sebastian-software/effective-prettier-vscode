@@ -37,8 +37,7 @@ const PRETTIER_CONFIG_FILES = [
   ".prettierrc.yml",
   ".prettierrc.js",
   "package.json",
-  "prettier.config.js",
-  ".editorconfig"
+  "prettier.config.js"
 ]
 
 export default class PrettierEditService implements Disposable {
@@ -233,8 +232,7 @@ export default class PrettierEditService implements Disposable {
       fileName,
       parser as prettier.BuiltInParserName,
       {
-        config: undefined,
-        editorconfig: vscodeConfig.useEditorConfig
+        config: undefined
       },
       rangeFormattingOptions
     )
