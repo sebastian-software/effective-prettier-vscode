@@ -15,7 +15,6 @@ import {
 import { ConfigResolver, RangeFormattingOptions } from "./ConfigResolver"
 import { LanguageResolver } from "./LanguageResolver"
 import { LoggingService } from "./LoggingService"
-import { INVALID_PRETTIER_CONFIG } from "./message"
 import { ModuleResolver } from "./ModuleResolver"
 import { NotificationService } from "./NotificationService"
 import { PrettierEditProvider } from "./PrettierEditProvider"
@@ -23,7 +22,7 @@ import { FormattingResult, StatusBarService } from "./StatusBarService"
 import { PrettierLintFormat } from "./types"
 import { getConfig } from "./util"
 
-interface ISelectors {
+interface LanguageSelectors {
   rangeLanguageSelector: DocumentSelector
   languageSelector: DocumentSelector
 }
@@ -105,7 +104,7 @@ export default class PrettierEditService implements Disposable {
   /**
    * Build formatter selectors
    */
-  private selectors = (): ISelectors => {
+  private selectors = (): LanguageSelectors => {
     let allLanguages: string[]
     if (workspace.workspaceFolders === undefined) {
       allLanguages = this.languageResolver.allEnabledLanguages()
