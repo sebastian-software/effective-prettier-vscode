@@ -24,8 +24,8 @@ export class StatusBarService {
   ) {
     // Setup the statusBarItem
     this.statusBarItem = window.createStatusBarItem(StatusBarAlignment.Right, -1)
-    this.statusBarItem.text = "Prettier"
-    this.statusBarItem.command = "prettier.openOutput"
+    this.statusBarItem.text = "✪ Prettier"
+    this.statusBarItem.command = "effective-prettier.openOutput"
 
     this.toggleStatusBarItem(window.activeTextEditor)
   }

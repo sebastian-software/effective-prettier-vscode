@@ -17,7 +17,7 @@ export function activate(context: ExtensionContext) {
   loggingService.logInfo(`Extension Name: ${process.env.BUNDLE_NAME}.`)
   loggingService.logInfo(`Extension Version: ${process.env.BUNDLE_VERSION}.`)
 
-  const openOutputCommand = commands.registerCommand("prettier.openOutput", () => {
+  const openOutputCommand = commands.registerCommand("effective-prettier.openOutput", () => {
     loggingService.show()
   })
 

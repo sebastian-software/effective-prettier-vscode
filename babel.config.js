@@ -9,7 +9,7 @@ module.exports = (api) => {
   const modules = (isTest && !isBundler) || isCli ? "commonjs" : false
   const isUmd = (/\b(umd)\b/).exec(environment)
 
-  console.log(`>>> Babel: Env="${environment}" Caller="${caller}" Modules="${modules}"`)
+  // console.log(`>>> Babel: Env="${environment}" Caller="${caller}" Modules="${modules}"`)
 
   return {
     sourceMaps: true,
