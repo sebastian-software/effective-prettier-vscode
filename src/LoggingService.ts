@@ -1,10 +1,10 @@
-import * as prettier from "prettier"
+import prettier from "prettier"
 import { window } from "vscode"
 
 type LogLevel = "INFO" | "WARN" | "ERROR" | "NONE"
 
 export class LoggingService {
-  private outputChannel = window.createOutputChannel("Prettier")
+  private outputChannel = window.createOutputChannel("✪ Prettier")
 
   private logLevel: LogLevel = "INFO"
 

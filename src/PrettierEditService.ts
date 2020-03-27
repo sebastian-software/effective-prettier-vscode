@@ -1,6 +1,6 @@
 /* eslint-disable max-statements */
 
-import * as prettier from "prettier"
+import prettier from "prettier"
 import {
   Disposable,
   DocumentFilter,

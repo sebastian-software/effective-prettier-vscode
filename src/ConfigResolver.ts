@@ -1,4 +1,4 @@
-import * as prettier from "prettier"
+import prettier from "prettier"
 
 import { LoggingService } from "./LoggingService"
 

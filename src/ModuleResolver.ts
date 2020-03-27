@@ -1,12 +1,9 @@
-import { execSync } from "child_process"
-import * as fs from "fs"
-import * as path from "path"
+import path from "path"
 
 import mem from "mem"
-import * as prettier from "prettier"
-import * as readPkgUp from "read-pkg-up"
-import * as resolve from "resolve"
-import * as semver from "semver"
+import prettier from "prettier"
+import readPkgUp from "read-pkg-up"
+import resolve from "resolve"
 import { Disposable } from "vscode"
 
 import { LoggingService } from "./LoggingService"

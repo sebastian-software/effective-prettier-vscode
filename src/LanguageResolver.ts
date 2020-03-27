@@ -1,17 +1,17 @@
-import * as prettier from "prettier"
+import prettier from "prettier"
 import { Uri } from "vscode"
 
 import { ModuleResolver } from "./ModuleResolver"
 
-const ESLINT_SUPPORTED_LANGUAGES = [
+const ESLINT_SUPPORTED_LANGUAGES = new Set([
   "javascript",
   "javascriptreact",
   "typescript",
   "typescriptreact",
   "vue"
-]
+])
 
-const STYLE_PARSERS = ["postcss", "css", "less", "scss"]
+const STYLE_PARSERS = new Set([ "postcss", "css", "less", "scss" ])
 
 export class LanguageResolver {
   constructor(private moduleResolver: ModuleResolver) {}
@@ -22,7 +22,7 @@ export class LanguageResolver {
     if (uri.scheme === "untitled" && languageId === "html") {
       // This is a workaround for the HTML language when it is unsaved. By default,
       // the Angular parser matches first because both register the language 'html'
-      return ["html"]
+      return [ "html" ]
     }
     const language = this.getSupportLanguages(uri.fsPath).find(
       (lang) =>
@@ -59,11 +59,11 @@ export class LanguageResolver {
   }
 
   public doesLanguageSupportESLint(languageId: string) {
-    return ESLINT_SUPPORTED_LANGUAGES.includes(languageId)
+    return ESLINT_SUPPORTED_LANGUAGES.has(languageId)
   }
 
   public doesParserSupportStylelint(parser: string) {
-    return STYLE_PARSERS.includes(parser)
+    return STYLE_PARSERS.has(parser)
   }
 
   private getSupportLanguages(fsPath?: string) {

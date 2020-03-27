@@ -46,8 +46,6 @@ export function activate(context: ExtensionContext) {
     ...editService.registerDisposables(),
     ...statusBarService.registerDisposables()
   )
-
-  const hrEnd = process.hrtime(hrStart)
 }
 
 export function deactivate() {}
