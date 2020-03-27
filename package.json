@@ -142,33 +142,10 @@
           "markdownDescription": "%ext.config.requireConfig%",
           "scope": "resource"
         },
-        "prettier.resolveGlobalModules": {
-          "type": "boolean",
-          "default": false,
-          "markdownDescription": "%ext.config.resolveGlobalModules%",
-          "scope": "resource"
-        },
-        "prettier.packageManager": {
-          "scope": "resource",
-          "type": "string",
-          "enum": [
-            "npm",
-            "yarn",
-            "pnpm"
-          ],
-          "default": "npm",
-          "markdownDescription": "%ext.config.packageManager%"
-        },
         "prettier.useEditorConfig": {
           "type": "boolean",
           "default": true,
           "markdownDescription": "%ext.config.useEditorConfig%",
-          "scope": "resource"
-        },
-        "prettier.ignorePath": {
-          "type": "string",
-          "default": ".prettierignore",
-          "markdownDescription": "%ext.config.ignorePath%",
           "scope": "resource"
         },
         "prettier.prettierPath": {

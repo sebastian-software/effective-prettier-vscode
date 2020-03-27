@@ -9,11 +9,10 @@ import * as resolve from "resolve"
 import * as semver from "semver"
 import { Disposable } from "vscode"
 
-import { resolveGlobalNodePath, resolveGlobalYarnPath } from "./Files"
 import { LoggingService } from "./LoggingService"
 import { FAILED_TO_LOAD_MODULE_MESSAGE } from "./message"
 import { NotificationService } from "./NotificationService"
-import { PackageManagers, PrettierModule } from "./types"
+import { PrettierModule } from "./types"
 import { getConfig, getWorkspaceRelativePath } from "./util"
 
 const minPrettierVersion = "1.13.0"
@@ -27,41 +26,6 @@ interface ModuleResult<T> {
 
 interface ModuleResolutionOptions {
   showNotifications: boolean
-}
-
-const globalPaths: {
-  [key: string]: { cache: string | undefined; get(): string | undefined }
-} = {
-  npm: {
-    cache: undefined,
-    get(): string | undefined {
-      return resolveGlobalNodePath()
-    }
-  },
-  pnpm: {
-    cache: undefined,
-    get(): string {
-      const pnpmPath = execSync("pnpm root -g").toString().trim()
-      return pnpmPath
-    }
-  },
-  yarn: {
-    cache: undefined,
-    get(): string | undefined {
-      return resolveGlobalYarnPath()
-    }
-  }
-}
-
-function globalPathGet(packageManager: PackageManagers): string | undefined {
-  const pm = globalPaths[packageManager]
-  if (pm) {
-    if (pm.cache === undefined) {
-      pm.cache = pm.get()
-    }
-    return pm.cache
-  }
-  return undefined
 }
 
 export class ModuleResolver implements Disposable {
@@ -90,7 +54,7 @@ export class ModuleResolver implements Disposable {
       return prettier
     }
 
-    const { prettierPath, packageManager, resolveGlobalModules } = getConfig()
+    const { prettierPath } = getConfig()
 
     let { moduleInstance, modulePath } = this.requireLocalPkg<PrettierModule>(
       fileName,
@@ -99,16 +63,7 @@ export class ModuleResolver implements Disposable {
       options
     )
 
-    if (resolveGlobalModules && !moduleInstance) {
-      const globalModuleResult = this.requireGlobalPkg<PrettierModule>(
-        packageManager,
-        "prettier"
-      )
-      if (globalModuleResult?.moduleInstance && globalModuleResult?.modulePath) {
-        moduleInstance = globalModuleResult.moduleInstance
-        modulePath = globalModuleResult.modulePath
-      }
-    }
+    this.loggingService.logInfo("Module Instance:" + moduleInstance)
 
     if (!moduleInstance && options?.showNotifications) {
       this.loggingService.logInfo("Using bundled version of prettier.")
@@ -140,18 +95,7 @@ export class ModuleResolver implements Disposable {
   }
 
   public getModuleInstance(fsPath: string, packageName): any {
-    let { moduleInstance } = this.requireLocalPkg<any>(fsPath, packageName)
-
-    const { packageManager, resolveGlobalModules } = getConfig()
-    if (resolveGlobalModules && !moduleInstance) {
-      const globalModuleResult = this.requireGlobalPkg<PrettierModule>(
-        packageManager,
-        packageName
-      )
-      if (globalModuleResult?.moduleInstance) {
-        moduleInstance = globalModuleResult.moduleInstance
-      }
-    }
+    const { moduleInstance } = this.requireLocalPkg<any>(fsPath, packageName)
     return moduleInstance
   }
 
@@ -218,31 +162,6 @@ export class ModuleResolver implements Disposable {
       }
     }
     return { moduleInstance: undefined, modulePath }
-  }
-
-  private requireGlobalPkg<T>(packageManager: PackageManagers, packageName): ModuleResult<T> {
-    const resolvedGlobalPackageManagerPath = globalPathGet(packageManager)
-    if (resolvedGlobalPackageManagerPath) {
-      const modulePath = path.join(resolvedGlobalPackageManagerPath, packageName)
-      try {
-        if (fs.existsSync(modulePath)) {
-          const moduleInstance = this.loadNodeModule(modulePath)
-          if (!this.resolvedModules.includes(modulePath)) {
-            this.resolvedModules.push(modulePath)
-          }
-          this.loggingService.logInfo(
-            `Loaded module '${packageName}@${
-              moduleInstance.version ?? "unknown"
-            }' from '${modulePath}'`
-          )
-          return { moduleInstance, modulePath }
-        }
-      } catch (error) {
-        this.loggingService.logError(`Failed to load global module ${packageName}.`, error)
-        return { moduleInstance: undefined, modulePath }
-      }
-    }
-    return { moduleInstance: undefined, modulePath: undefined }
   }
 
   // Source: https://github.com/microsoft/vscode-eslint/blob/master/server/src/eslintServer.ts#L209

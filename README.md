@@ -1,4 +1,4 @@
-# Prettier Formatter for Visual Studio Code
+# Effective Prettier Formatter for Visual Studio Code
 
 [Prettier](https://prettier.io/) is an opinionated code formatter. It enforces a consistent style by parsing your code and re-printing it with its own rules that take the maximum line length into account, wrapping code when necessary.
 
@@ -76,7 +76,7 @@ To ensure that this extension is used over other extensions you may have install
 
 ### Prettier Resolution
 
-This extension will use prettier from your project's local dependencies (recommended). When the `prettier.resolveGlobalModules` is set to `true` the extension can also attempt to resolve global modules. Should prettier not be installed locally with your project's dependencies or globally on the machine, the version of prettier that is bundled with the extension will be used.
+This extension will use prettier from your project's local dependencies.
 
 To install prettier in your project run:
 
@@ -86,7 +86,7 @@ npm install prettier -D
 
 ### Plugins
 
-This extension supports [Prettier plugins](https://prettier.io/docs/en/plugins.html) when you are using a locally or globally resolved version of prettier. If you have Prettier and a plugin registered in your `package.json`, this extension will attempt to register the language and provide automatic code formatting for the built-in and plugin languages.
+This extension supports [Prettier plugins](https://prettier.io/docs/en/plugins.html). If you have Prettier and a plugin registered in your `package.json`, this extension will attempt to register the language and provide automatic code formatting for the built-in and plugin languages.
 
 ## Configuration
 
@@ -186,16 +186,6 @@ Files which match will not be formatted. Set to `null` to not read ignore files.
 #### prettier.prettierPath
 
 Supply a custom path to the prettier module.
-
-#### prettier.packageManager
-
-Controls the package manager to be used to resolve modules. This has only an influence if the `prettier.resolveGlobalModules` setting is `true` and modules are resolved globally. Valid values are `"npm"` or `"yarn"` or `"pnpm"`.
-
-#### prettier.resolveGlobalModules (default: `false`)
-
-When enabled, this extension will attempt to use global npm or yarn modules if local modules cannot be resolved.
-
-> NOTE: This setting can have a negative performance impact, particularly on Windows when you have attached network drives. Only enable this if you must use global modules. It is recommended that you always use local modules when possible.
 
 #### prettier.disableLanguages
 
