@@ -15,9 +15,7 @@ import { NotificationService } from "./NotificationService"
 import { PrettierModule } from "./types"
 import { getConfig, getWorkspaceRelativePath } from "./util"
 
-const minPrettierVersion = "1.13.0"
-declare const __webpack_require__: typeof require
-declare const __non_webpack_require__: typeof require
+const MIN_PRETTIER_VERSION = "1.13.0"
 
 interface ModuleResult<T> {
   moduleInstance: T | undefined
@@ -75,7 +73,7 @@ export class ModuleResolver implements Disposable {
         !!moduleInstance.getSupportInfo &&
         !!moduleInstance.getFileInfo &&
         !!moduleInstance.resolveConfig &&
-        semver.gte(moduleInstance.version, minPrettierVersion)
+        semver.gte(moduleInstance.version, MIN_PRETTIER_VERSION)
 
       if (!isValidVersion) {
         if (options?.showNotifications) {
@@ -105,11 +103,10 @@ export class ModuleResolver implements Disposable {
   public dispose() {
     this.getPrettierInstance().clearConfigCache()
     this.resolvedModules.forEach((modulePath) => {
-      const r = typeof __webpack_require__ === "function" ? __non_webpack_require__ : require
       try {
-        const module = r.cache[r.resolve(modulePath)]
+        const module = require.cache[require.resolve(modulePath)]
         module?.exports?.clearConfigCache()
-        delete r.cache[r.resolve(modulePath)]
+        delete require.cache[require.resolve(modulePath)]
       } catch (error) {
         this.loggingService.logError("Error clearing module cache.", error)
       }
@@ -164,11 +161,9 @@ export class ModuleResolver implements Disposable {
     return { moduleInstance: undefined, modulePath }
   }
 
-  // Source: https://github.com/microsoft/vscode-eslint/blob/master/server/src/eslintServer.ts#L209
   private loadNodeModule(moduleName: string): any | undefined {
-    const r = typeof __webpack_require__ === "function" ? __non_webpack_require__ : require
     try {
-      return r(moduleName)
+      return require(moduleName)
     } catch (error) {
       this.loggingService.logError(`Error loading node module '${moduleName}'`, error)
     }
