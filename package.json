@@ -1,7 +1,7 @@
 {
   "name": "effective-prettier-vscode",
-  "displayName": "Enhanced Prettier - Code formatter",
-  "description": "Code formatter using prettier",
+  "displayName": "✪ Effective Prettier - Code Formatter",
+  "description": "Code Formatter using Prettier + ESLint/Stylelint",
   "version": "1.0.0",
   "publisher": "sebastian-software",
   "author": {

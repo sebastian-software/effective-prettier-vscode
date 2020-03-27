@@ -1,16 +1,14 @@
 .vscode
-.vscode-test
-out/
+.vscodeDevUserData
 src/
-test-fixtures/
-tsconfig.json
-.prettierignore
-scripts/
-samples/
-.gitignore
-.github/
 tsconfig.json
 yarn.lock
+babel.config.js
+.prettierrc.yml
+.prettierignore
+.gitattributes
+.gitignore
+.github/
 
 node_modules
 !node_modules/prettier
