@@ -7,3 +7,4 @@ node_modules
 .vscodeDevUserData/rapid_render.json
 .vscodeDevUserData/machineid
 .vscodeDevUserData/CachedExtensions
+*.vsix
