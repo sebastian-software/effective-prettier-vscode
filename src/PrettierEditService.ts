@@ -131,32 +131,32 @@ export default class PrettierEditService implements Disposable {
       allRangeLanguages.sort()
     )
 
-    const globalLanguageSelector = allLanguages
-    const globalRangeLanguageSelector = allRangeLanguages
-
     if (workspace.workspaceFolders === undefined) {
       // no workspace opened
       return {
-        languageSelector: globalLanguageSelector,
-        rangeLanguageSelector: globalRangeLanguageSelector
+        languageSelector: allLanguages,
+        rangeLanguageSelector: allRangeLanguages
       }
     }
 
     // at least 1 workspace
-    const untitledLanguageSelector: DocumentFilter[] = globalLanguageSelector.map((l) => ({
+    const untitledLanguageSelector: DocumentFilter[] = allLanguages.map((l) => ({
       language: l,
       scheme: "untitled"
     }))
-    const untitledRangeLanguageSelector: DocumentFilter[] = globalRangeLanguageSelector.map(
-      (l) => ({ language: l, scheme: "untitled" })
-    )
-    const fileLanguageSelector: DocumentFilter[] = globalLanguageSelector.map((l) => ({
+    const untitledRangeLanguageSelector: DocumentFilter[] = allRangeLanguages.map((l) => ({
+      language: l,
+      scheme: "untitled"
+    }))
+    const fileLanguageSelector: DocumentFilter[] = allLanguages.map((l) => ({
       language: l,
       scheme: "file"
     }))
-    const fileRangeLanguageSelector: DocumentFilter[] = globalRangeLanguageSelector.map(
-      (l) => ({ language: l, scheme: "file" })
-    )
+    const fileRangeLanguageSelector: DocumentFilter[] = allRangeLanguages.map((l) => ({
+      language: l,
+      scheme: "file"
+    }))
+
     return {
       languageSelector: untitledLanguageSelector.concat(fileLanguageSelector),
       rangeLanguageSelector: untitledRangeLanguageSelector.concat(fileRangeLanguageSelector)
