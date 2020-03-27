@@ -9,17 +9,13 @@ import PrettierEditService from "./PrettierEditService"
 import { StatusBarService } from "./StatusBarService"
 
 // the application insights key (also known as instrumentation key)
-const extensionName =
-  process.env.EXTENSION_NAME || "sebastian-software.effective-prettier-vscode"
-const extensionVersion = process.env.EXTENSION_VERSION || "0.0.0"
-
 export function activate(context: ExtensionContext) {
   const hrStart = process.hrtime()
 
   const loggingService = new LoggingService()
 
-  loggingService.logInfo(`Extension Name: ${extensionName}.`)
-  loggingService.logInfo(`Extension Version: ${extensionVersion}.`)
+  loggingService.logInfo(`Extension Name: ${process.env.BUNDLE_NAME}.`)
+  loggingService.logInfo(`Extension Version: ${process.env.BUNDLE_VERSION}.`)
 
   const openOutputCommand = commands.registerCommand("prettier.openOutput", () => {
     loggingService.show()
