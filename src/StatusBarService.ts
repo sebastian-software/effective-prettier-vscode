@@ -9,8 +9,6 @@ import {
 
 import { LanguageResolver } from "./LanguageResolver"
 import { LoggingService } from "./LoggingService"
-import { PrettierVSCodeConfig } from "./types"
-import { getConfig } from "./util"
 
 export enum FormattingResult {
   Success = "check",
@@ -67,11 +65,8 @@ export class StatusBarService {
         this.languageResolver.allEnabledLanguages(filePath),
         editor.document
       )
-      const disabledLanguages: PrettierVSCodeConfig["disableLanguages"] = getConfig(
-        editor.document.uri
-      ).disableLanguages
 
-      if (score > 0 && !disabledLanguages.includes(editor.document.languageId)) {
+      if (score > 0) {
         this.statusBarItem.show()
       } else {
         this.statusBarItem.hide()

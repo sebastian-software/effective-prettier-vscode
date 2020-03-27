@@ -94,16 +94,6 @@ It is recommended that you always include a [Prettier Configuration file](https:
 
 Options are searched recursively down from the file being formatted so if you want to apply prettier settings to your entire project simply set a configuration in the root. Settings can also be configured through VS Code - however, these settings will only apply while running the extension, not when running prettier through the command line.
 
-### Visual Studio Code Settings
-
-You can use [VS Code settings](#prettiers-settings) to configure prettier. Settings will be read from (listed by priority):
-
-1. [Prettier configuration file](https://prettier.io/docs/en/configuration.html)
-1. `.editorconfig`
-1. Visual Studio Code Settings (Ignored if any other configuration is present)
-
-> NOTE: If any local configuration file is present (i.e. `.prettierrc`) the VS Code settings will **NOT** be used.
-
 ## Usage
 
 ### Using Command Palette (CMD/CTRL + Shift + P)
@@ -186,12 +176,6 @@ Files which match will not be formatted. Set to `null` to not read ignore files.
 #### prettier.prettierPath
 
 Supply a custom path to the prettier module.
-
-#### prettier.disableLanguages
-
-A list of languages IDs to disable this extension on.
-
-**Note: Disabling a language enabled in a parent folder will prevent formatting instead of letting any other formatter to run**
 
 #### prettier.useEditorConfig (default: `true`)
 

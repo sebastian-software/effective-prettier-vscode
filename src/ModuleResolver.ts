@@ -15,8 +15,6 @@ import { NotificationService } from "./NotificationService"
 import { PrettierModule } from "./types"
 import { getConfig, getWorkspaceRelativePath } from "./util"
 
-const MIN_PRETTIER_VERSION = "1.13.0"
-
 interface ModuleResult<T> {
   moduleInstance: T | undefined
   modulePath: string | undefined
@@ -54,40 +52,12 @@ export class ModuleResolver implements Disposable {
 
     const { prettierPath } = getConfig()
 
-    let { moduleInstance, modulePath } = this.requireLocalPkg<PrettierModule>(
+    const { moduleInstance, modulePath } = this.requireLocalPkg<PrettierModule>(
       fileName,
       "prettier",
       prettierPath,
       options
     )
-
-    this.loggingService.logInfo("Module Instance:" + moduleInstance)
-
-    if (!moduleInstance && options?.showNotifications) {
-      this.loggingService.logInfo("Using bundled version of prettier.")
-    }
-
-    if (moduleInstance) {
-      const isValidVersion =
-        moduleInstance.version &&
-        !!moduleInstance.getSupportInfo &&
-        !!moduleInstance.getFileInfo &&
-        !!moduleInstance.resolveConfig &&
-        semver.gte(moduleInstance.version, MIN_PRETTIER_VERSION)
-
-      if (!isValidVersion) {
-        if (options?.showNotifications) {
-          // We only prompt when formatting a file. If we did it on load there
-          // could be lots of these notifications which would be annoying.
-          this.notificationService.warnOutdatedPrettierVersion(modulePath)
-        }
-        this.loggingService.logError(
-          "Outdated version of prettier installed. Falling back to bundled version of prettier."
-        )
-        // Invalid version, force bundled
-        moduleInstance = undefined
-      }
-    }
 
     return moduleInstance || prettier
   }

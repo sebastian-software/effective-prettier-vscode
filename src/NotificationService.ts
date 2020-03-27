@@ -1,16 +1,10 @@
 import { Disposable, window } from "vscode"
 
 import { LoggingService } from "./LoggingService"
-import { OUTDATED_PRETTIER_VERSION_MESSAGE, VIEW_LOGS_ACTION_TEXT } from "./message"
+import { VIEW_LOGS_ACTION_TEXT } from "./message"
 
 export class NotificationService implements Disposable {
   constructor(private loggingService: LoggingService) {}
-
-  public warnOutdatedPrettierVersion(prettierPath?: string) {
-    window.showErrorMessage(
-      OUTDATED_PRETTIER_VERSION_MESSAGE.replace("{{path}}", prettierPath || "unknown")
-    )
-  }
 
   public async showErrorMessage(message: string, extraLines?: string[]) {
     let result: string | undefined

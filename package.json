@@ -129,14 +129,6 @@
       "type": "object",
       "title": "%ext.config.title%",
       "properties": {
-        "prettier.disableLanguages": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "markdownDescription": "%ext.config.disableLanguages%",
-          "scope": "window"
-        },
         "prettier.requireConfig": {
           "type": "boolean",
           "default": false,

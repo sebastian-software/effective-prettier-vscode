@@ -106,8 +106,6 @@ export default class PrettierEditService implements Disposable {
    * Build formatter selectors
    */
   private selectors = (): ISelectors => {
-    const { disableLanguages } = getConfig()
-
     let allLanguages: string[]
     if (workspace.workspaceFolders === undefined) {
       allLanguages = this.languageResolver.allEnabledLanguages()
@@ -133,10 +131,9 @@ export default class PrettierEditService implements Disposable {
       allRangeLanguages.sort()
     )
 
-    const globalLanguageSelector = allLanguages.filter((l) => !disableLanguages.includes(l))
-    const globalRangeLanguageSelector = allRangeLanguages.filter(
-      (l) => !disableLanguages.includes(l)
-    )
+    const globalLanguageSelector = allLanguages
+    const globalRangeLanguageSelector = allRangeLanguages
+
     if (workspace.workspaceFolders === undefined) {
       // no workspace opened
       return {
@@ -196,14 +193,6 @@ export default class PrettierEditService implements Disposable {
     this.loggingService.logInfo(`Formatting ${fileName}`)
 
     const vscodeConfig = getConfig(uri)
-
-    // This has to stay, as it allows to skip in sub workspaceFolders. Sadly noop.
-    // wf1  (with "lang") -> glob: "wf1/**"
-    // wf1/wf2  (without "lang") -> match "wf1/**"
-    if (vscodeConfig.disableLanguages.includes(languageId)) {
-      this.statusBarService.updateStatusBar(FormattingResult.Ignore)
-      return
-    }
 
     try {
       const hasConfig = await this.configResolver.checkHasPrettierConfig(fileName)
