@@ -29,7 +29,7 @@ export class ModuleResolver implements Disposable {
     private notificationService: NotificationService
   ) {
     this.findPkgMem = mem(this.findPkg, {
-      cacheKey: (arguments_) => `${arguments_[0]}:${arguments_[1]}`
+      cacheKey: (parameters) => `${parameters[0]}:${parameters[1]}`
     })
   }
 
@@ -81,7 +81,7 @@ export class ModuleResolver implements Disposable {
    * Fallback to bundled one if no package was found bottom up.
    *
    * @param fsPath file system path starting point to resolve package
-   * @param pkgName package's name to require
+   * @param packageName package's name to require
    * @returns module
    */
   private requireLocalPkg<T>(
@@ -89,8 +89,9 @@ export class ModuleResolver implements Disposable {
     packageName: string,
     options?: ModuleResolutionOptions
   ): ModuleResult<T> {
+    let modulePath = undefined
     try {
-      const modulePath = this.findPkgMem(fsPath, packageName)
+      modulePath = this.findPkgMem(fsPath, packageName)
 
       if (modulePath !== undefined) {
         const moduleInstance = this.loadNodeModule(modulePath)
@@ -129,10 +130,10 @@ export class ModuleResolver implements Disposable {
    * as a dependency or devDependency.
    *
    * @param fsPath file system path to start searching from
-   * @param pkgName package's name to search for
+   * @param packageName package's name to search for
    * @returns resolved path to module
    */
-  private findPkg(fsPath: string, packageName): string | undefined {
+  private findPkg(fsPath: string, packageName: string): string | undefined {
     // Get the closest `package.json` file, that's outside of any `node_modules`
     // directory.
     const splitPath = fsPath.split("/")
