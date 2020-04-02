@@ -39,6 +39,7 @@ module.exports = (api) => {
           useBuiltIns: "usage",
           corejs: 3,
           loose: true,
+          // bugfixes: true,
           modules,
           targets: {
             node: 10
