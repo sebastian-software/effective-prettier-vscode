@@ -69,9 +69,9 @@
     "format": "prettier --write '**/*.{ts,json,md,yml,js}' && prettier-eslint '**/*.{ts,js}'",
     "vscode:package": "vsce package",
     "vscode:publish": "vsce publish",
-    "vscode:prepublish": "preppy --quiet",
-    "watch": "preppy --watch",
-    "build": "preppy"
+    "vscode:prepublish": "preppy --deep --quiet",
+    "watch": "preppy --watch --deep",
+    "build": "preppy --deep"
   },
   "husky": {
     "hooks": {
@@ -97,20 +97,17 @@
     "@effective/eslint-config": "^2.2.0",
     "@effective/prettier-eslint": "^1.2.0",
     "@types/glob": "^7.1.1",
-    "@types/mocha": "^7.0.2",
     "@types/node": "^13",
     "@types/prettier": "^1.19.1",
     "@types/resolve": "1.14.0",
-    "@types/semver": "7.1.0",
-    "@types/sinon": "^7.5.2",
     "@types/vscode": "1.43.0",
     "eslint": "^6.8.0",
     "glob": "^7.1.6",
     "husky": "^4.2.3",
-    "lint-staged": "^10.0.9",
+    "lint-staged": "^10.1.1",
     "mocha": "^7.1.1",
     "mocha-junit-reporter": "^1.23.3",
-    "preppy": "^9.3.1",
+    "preppy": "^10.1.0",
     "sinon": "^9.0.1",
     "typescript": "^3.8.3",
     "vsce": "^1.74.0",
@@ -122,8 +119,7 @@
     "mem": "^6.0.1",
     "prettier": "^2.0.2",
     "read-pkg-up": "^7.0.1",
-    "resolve": "^1.15.1",
-    "semver": "7.1.3"
+    "resolve": "^1.15.1"
   },
   "contributes": {
     "configuration": {
