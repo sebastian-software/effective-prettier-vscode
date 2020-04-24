@@ -2,7 +2,7 @@
   "name": "effective-prettier-vscode",
   "displayName": "✪ Effective Prettier for VSCode - Code Formatter",
   "description": "✪ Effective Prettier for VSCode - Code Formatter",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "publisher": "sebastian-software",
   "author": {
     "name": "Sebastian Software",
@@ -66,7 +66,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "lint": "tsc --noEmit",
-    "format": "prettier --write '**/*.{json,md,yml}' && prettier-eslint '**/*.{ts,js}'",
+    "format": "prettier --write '**/*.{json,md,yml}' && effective-prettier '**/*.{ts,js}'",
     "vscode:package": "vsce package",
     "vscode:publish": "vsce publish",
     "vscode:prepublish": "preppy --deep --quiet",
@@ -94,7 +94,7 @@
     "@babel/plugin-transform-runtime": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-typescript": "^7.9.0",
-    "@effective/eslint-config": "^2.3.3",
+    "@effective/eslint-config": "^2.3.5",
     "@effective/prettier": "^2.0.0",
     "@types/glob": "^7.1.1",
     "@types/node": "^13",
