@@ -90,11 +90,14 @@ export class ModuleResolver implements Disposable {
     options?: ModuleResolutionOptions
   ): ModuleResult<T> {
     let modulePath = undefined
+    this.loggingService.logInfo(`Local load package: ${packageName}`)
     try {
       modulePath = this.findPkgMem(fsPath, packageName)
+      this.loggingService.logInfo(`modulePath: ${modulePath}`)
 
       if (modulePath !== undefined) {
         const moduleInstance = this.loadNodeModule(modulePath)
+        this.loggingService.logInfo(`moduleInstance: ${moduleInstance}`)
         if (!this.resolvedModules.includes(modulePath)) {
           this.resolvedModules.push(modulePath)
         }
@@ -136,6 +139,8 @@ export class ModuleResolver implements Disposable {
   private findPkg(fsPath: string, packageName: string): string | undefined {
     // Get the closest `package.json` file, that's outside of any `node_modules`
     // directory.
+    this.loggingService.logInfo(`findPkg: ${fsPath}; package=${packageName}`)
+
     const splitPath = fsPath.split("/")
     let finalPath = fsPath
     const nodeModulesIndex = splitPath.indexOf("node_modules")
@@ -146,6 +151,8 @@ export class ModuleResolver implements Disposable {
 
     const res = readPkgUp.sync({ cwd: finalPath, normalize: false })
     const { root } = path.parse(finalPath)
+
+    this.loggingService.logInfo(`findPkg: => ${JSON.stringify(res)}`)
 
     if (
       res &&

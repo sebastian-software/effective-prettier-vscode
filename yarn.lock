@@ -853,10 +853,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@effective/eslint-config@^2.3.5":
-  version "2.3.5"
-  resolved "https://registry.yarnpkg.com/@effective/eslint-config/-/eslint-config-2.3.5.tgz#334d84fdf9c3b3a379567ba107db4fb7fdb13016"
-  integrity sha512-N6OB2hxe7E2Y4873hkb2AuTQBxO2qAHjhwJC3UI4Zy3CO67OI1DrkD0A5O2EjV4/udgLytnRXkK04ExvTp9WOA==
+"@effective/eslint-config@^2.3.7":
+  version "2.3.7"
+  resolved "https://registry.yarnpkg.com/@effective/eslint-config/-/eslint-config-2.3.7.tgz#432e4bd26092d41b2e9ff43229b5755805e93d82"
+  integrity sha512-CQCGRkeHjCooXGMx2YZ+977lgtMKWkRBcwsLvr8j5fFjVe0HdY5XnI7+fr4EHVV/D+tu9UuZM6IRgI2MtTPNRQ==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^2.29.0"
     "@typescript-eslint/parser" "^2.29.0"
@@ -872,17 +872,19 @@
     eslint-plugin-jsx-a11y "^6.2.3"
     eslint-plugin-react "^7.19.0"
     eslint-plugin-react-hooks "^3.0.0"
-    eslint-plugin-shopify-lean "^1.1.1"
+    eslint-plugin-shopify-lean "^1.1.2"
     eslint-plugin-unicorn "^18.0.1"
 
-"@effective/prettier@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@effective/prettier/-/prettier-2.0.1.tgz#48f48fb1498ae74fa07447fe64cc69a63fb9e18d"
-  integrity sha512-lFwq0iMD9PXZUG0+TvIXmZ8OKdiuyP2FpU0+QcwPzCjvw03khsSNieipCCvfXfHhUblUQ63WNjr+7we/RkfZLQ==
+"@effective/prettier@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@effective/prettier/-/prettier-2.0.4.tgz#10a271a9b1f14efc4347843fd7c158b595457753"
+  integrity sha512-kdfDsaiFPHnPPhQLmPc6Yx3asyyKQJJGBODnimCwBDllsia6pTiO/dX6/09Zr/B79GpMD/UjZvYvaNDiJFv59Q==
   dependencies:
     app-root-path "^3.0.0"
+    chalk "^4.0.0"
     core-js "^3.6.5"
     eslint "^6.8.0"
+    figures "^3.2.0"
     glob-parent "^5.1.1"
     globby "^11.0.0"
     is-path-inside "^3.0.2"
@@ -2323,10 +2325,10 @@ eslint-plugin-react@^7.19.0:
     string.prototype.matchall "^4.0.2"
     xregexp "^4.3.0"
 
-eslint-plugin-shopify-lean@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-shopify-lean/-/eslint-plugin-shopify-lean-1.1.1.tgz#48b90af2370cb1817a796e4dcd2ab98d0148362b"
-  integrity sha512-8srwDrSBT7qcnE5s1uU7oZgCu83pjAzTwowPy9D5+qvTLQJ93wngIGN3Krv4L++5mVDXLss3Tmi19XWz0Jp2pA==
+eslint-plugin-shopify-lean@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-shopify-lean/-/eslint-plugin-shopify-lean-1.1.2.tgz#88bc0a0a5582f4c07d0f82db0780106bda84763a"
+  integrity sha512-ilNAxiEYduQgl0HnIrs4hH9s3W6HLeQNeuD8qPa2k6FH8vG/Zs5QKmSeBDv6oezXkIa8daRFl3ATDfyo3JLxZA==
   dependencies:
     change-case "^4.1.1"
     eslint-module-utils "^2.6.0"
