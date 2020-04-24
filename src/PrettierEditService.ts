@@ -247,15 +247,17 @@ export default class PrettierEditService implements Disposable {
     }
 
     this.loggingService.logInfo("Prettier Options:", prettierOptions)
-    this.loggingService.logInfo(`Language ID: ${languageId}`)
+    this.loggingService.logInfo(`Language ID: ${languageId}`, {
+      supported: this.languageResolver.doesLanguageSupportESLint(languageId)
+    })
 
     if (this.languageResolver.doesLanguageSupportESLint(languageId)) {
       const prettierEslintModule = this.moduleResolver.getModuleInstance(
         fileName,
-        "@effective/prettier-eslint"
+        "@effective/prettier"
       )
       if (prettierEslintModule) {
-        this.loggingService.logInfo("Formatting using '@effective/prettier-eslint'")
+        this.loggingService.logInfo("Formatting using '@effective/prettier'")
         const prettierEslintFormat = prettierEslintModule.formatText as PrettierLintFormat
         return this.safeExecution(
           () =>
@@ -266,6 +268,8 @@ export default class PrettierEditService implements Disposable {
             }),
           text
         )
+      } else {
+        this.loggingService.logInfo("Formatting using plain 'prettier'")
       }
     }
 
