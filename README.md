@@ -74,7 +74,7 @@ This extension will use prettier from your project's local dependencies.
 To install prettier in your project run:
 
 ```
-npm install prettier @effective/prettier-eslint -D
+npm install prettier @effective/prettier -D
 ```
 
 ### Plugins
