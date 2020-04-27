@@ -94,7 +94,7 @@
     "@babel/plugin-transform-runtime": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-typescript": "^7.9.0",
-    "@effective/eslint-config": "^2.4.2",
+    "@effective/eslint-config": "^2.4.3",
     "@effective/prettier": "^2.1.0",
     "@types/glob": "^7.1.1",
     "@types/node": "^13",
