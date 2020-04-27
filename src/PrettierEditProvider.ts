@@ -8,7 +8,10 @@ import {
   TextEdit
 } from "vscode"
 
-import { RangeFormattingOptions } from "./ConfigResolver"
+interface RangeFormattingOptions {
+  rangeStart: number
+  rangeEnd: number
+}
 
 export class PrettierEditProvider
 implements DocumentRangeFormattingEditProvider, DocumentFormattingEditProvider {

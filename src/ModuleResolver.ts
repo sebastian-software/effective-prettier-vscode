@@ -166,4 +166,8 @@ export class ModuleResolver implements Disposable {
     }
     return
   }
+
+  public dispose() {
+    // pass
+  }
 }
