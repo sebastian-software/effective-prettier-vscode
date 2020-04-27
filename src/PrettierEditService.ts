@@ -29,6 +29,8 @@ interface LanguageSelectors {
   languageSelector: DocumentSelector
 }
 
+const NS_TO_MS = 1000000
+
 /**
  * Prettier reads configuration from files
  */
@@ -173,7 +175,7 @@ export default class PrettierEditService implements Disposable {
       return []
     }
     const hrEnd = process.hrtime(hrStart)
-    this.loggingService.logInfo(`Formatting completed in ${hrEnd[1] / 1000000}ms.`)
+    this.loggingService.logInfo(`Formatting completed in ${hrEnd[1] / NS_TO_MS}ms.`)
     return [ TextEdit.replace(this.fullDocumentRange(document), result) ]
   }
 
@@ -225,9 +227,8 @@ export default class PrettierEditService implements Disposable {
   /**
    * Execute a callback safely, if it doesn't work, return default and log messages.
    *
-   * @param cb The function to be executed,
+   * @param callback The function to be executed,
    * @param defaultText The default value if execution of the cb failed
-   * @param fileName The filename of the current document
    * @returns formatted text or defaultText
    */
   private async safeExecution(
