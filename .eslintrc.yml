@@ -1,2 +1,6 @@
 extends:
   - "@effective"
+rules:
+  # Needs TS knowledge e.g. for type imports
+  import/named: off
+  import/no-unresolved: off

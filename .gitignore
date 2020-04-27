@@ -1,6 +1,5 @@
 dist
 node_modules
-.vscode-test
 .DS_STORE
 *.log
 .vscodeDevUserData/User/workspaceStorage
