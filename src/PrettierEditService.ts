@@ -46,6 +46,7 @@ export default class PrettierEditService implements Disposable {
   private formatterHandler: undefined | Disposable
   private rangeFormatterHandler: undefined | Disposable
 
+  // eslint-disable-next-line max-params
   constructor(
     private moduleResolver: ModuleResolver,
     private languageResolver: LanguageResolver,

@@ -19,5 +19,7 @@ export class NotificationService implements Disposable {
     }
   }
 
-  public dispose() {}
+  public dispose() {
+    // pass
+  }
 }
