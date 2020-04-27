@@ -208,24 +208,6 @@ export default class PrettierEditService implements Disposable {
       return
     }
 
-    let parser: prettier.BuiltInParserName | string | undefined
-    if (fileInfo && fileInfo.inferredParser) {
-      parser = fileInfo.inferredParser
-    } else {
-      this.loggingService.logWarning("Parser not inferred, using VS Code language.")
-      const dynamicParsers = this.languageResolver.getParsersFromLanguageId(uri, languageId)
-      if (dynamicParsers.length > 0) {
-        parser = dynamicParsers[0]
-        this.loggingService.logInfo(`Resolved parser to '${parser}'`)
-      }
-    }
-
-    if (!parser) {
-      this.loggingService.logError(`Failed to resolve a parser, skipping file.`)
-      this.statusBarService.updateStatusBar(FormattingResult.Error)
-      return
-    }
-
     const effectivePrettierInstance = this.moduleResolver.getEffectivePrettierInstance(
       fileName
     )
