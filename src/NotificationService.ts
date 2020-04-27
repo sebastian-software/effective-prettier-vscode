@@ -1,7 +1,6 @@
 import { Disposable, window } from "vscode"
 
 import { LoggingService } from "./LoggingService"
-import { VIEW_LOGS_ACTION_TEXT } from "./message"
 
 export class NotificationService implements Disposable {
   constructor(private loggingService: LoggingService) {}
@@ -11,11 +10,11 @@ export class NotificationService implements Disposable {
     if (extraLines) {
       const lines = [ message ]
       lines.push(...extraLines)
-      result = await window.showErrorMessage(lines.join(" "), VIEW_LOGS_ACTION_TEXT)
+      result = await window.showErrorMessage(lines.join(" "), "Show Log")
     } else {
-      result = await window.showErrorMessage(message, VIEW_LOGS_ACTION_TEXT)
+      result = await window.showErrorMessage(message, "Show Log")
     }
-    if (result && result === VIEW_LOGS_ACTION_TEXT) {
+    if (result && result === "Show Log") {
       this.loggingService.show()
     }
   }

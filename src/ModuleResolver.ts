@@ -8,7 +8,6 @@ import prettier from "prettier"
 import effectivePrettier from "@effective/prettier"
 
 import { LoggingService } from "./LoggingService"
-import { FAILED_TO_LOAD_MODULE_MESSAGE } from "./message"
 import { NotificationService } from "./NotificationService"
 import { EffectivePrettierModule, PrettierModule } from "./types"
 
@@ -112,9 +111,10 @@ export class ModuleResolver implements Disposable {
     } catch (error) {
       this.loggingService.logError(`Failed to load local module ${packageName}.`, error)
       if (options?.showNotifications) {
-        this.notificationService.showErrorMessage(FAILED_TO_LOAD_MODULE_MESSAGE, [
-          `Attempted to load ${packageName} from ${modulePath || "package.json"}`
-        ])
+        this.notificationService.showErrorMessage(
+          "Failed to load module. If you have prettier or plugins referenced in package.json, ensure you have run `npm install`",
+          [ `Attempted to load ${packageName} from ${modulePath || "package.json"}` ]
+        )
       }
     }
     return { moduleInstance: undefined, modulePath }
