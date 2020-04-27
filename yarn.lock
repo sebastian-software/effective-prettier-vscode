@@ -853,10 +853,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@effective/eslint-config@^2.4.0":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@effective/eslint-config/-/eslint-config-2.4.0.tgz#8291f2ffafd7f98efb89878800472c8db4240eb0"
-  integrity sha512-Khq1zAL8UqfARhLVcC5Y8Hc8qRHROLckUll8jHHgtrx6/AH5KcQ1fW8eZfEsiCy23fxj9l2t5vO33CnWceuddA==
+"@effective/eslint-config@^2.4.1":
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/@effective/eslint-config/-/eslint-config-2.4.1.tgz#87fea2d9b6320d5534066afca9b86df0949f7752"
+  integrity sha512-61bU9aCUEv3lRE1d8D2Dv7ivEDhdz/kogfBYEpZ5Zspr9rGSGHu5o2XmAm5A4zatpDjSj6Om0I6IDa4ZeBvOdA==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^2.29.0"
     "@typescript-eslint/parser" "^2.29.0"
@@ -875,10 +875,10 @@
     eslint-plugin-shopify-lean "^1.1.2"
     eslint-plugin-unicorn "^19.0.1"
 
-"@effective/prettier@^2.0.4":
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/@effective/prettier/-/prettier-2.0.4.tgz#10a271a9b1f14efc4347843fd7c158b595457753"
-  integrity sha512-kdfDsaiFPHnPPhQLmPc6Yx3asyyKQJJGBODnimCwBDllsia6pTiO/dX6/09Zr/B79GpMD/UjZvYvaNDiJFv59Q==
+"@effective/prettier@^2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@effective/prettier/-/prettier-2.0.5.tgz#1ace1845fb50c7edd5812ccc5bf6753682a03b73"
+  integrity sha512-WjV1cArtrt9u4boHjwvZ5JVccl0E+Tp/s4OOxZ7eIccaqVerCpNebRTtRy/x+9D7vT4NE3KO0ZfVtfJsM9U/vg==
   dependencies:
     app-root-path "^3.0.0"
     chalk "^4.0.0"
