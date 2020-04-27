@@ -875,10 +875,10 @@
     eslint-plugin-shopify-lean "^1.1.2"
     eslint-plugin-unicorn "^19.0.1"
 
-"@effective/prettier@^2.0.5":
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/@effective/prettier/-/prettier-2.0.5.tgz#1ace1845fb50c7edd5812ccc5bf6753682a03b73"
-  integrity sha512-WjV1cArtrt9u4boHjwvZ5JVccl0E+Tp/s4OOxZ7eIccaqVerCpNebRTtRy/x+9D7vT4NE3KO0ZfVtfJsM9U/vg==
+"@effective/prettier@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@effective/prettier/-/prettier-2.1.0.tgz#8e6fc3c82174b7077d5b5ad144bbf75d79aaf788"
+  integrity sha512-Tqd9pGjS/Y9pW9KaCJim6mDQhzutHQnDJZFScpx67fESvDDFIsM9BQEsB477j5pb2OQ2JnJryMjkCE+fPP6Glw==
   dependencies:
     app-root-path "^3.0.0"
     chalk "^4.0.0"

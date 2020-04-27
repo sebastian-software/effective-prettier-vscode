@@ -95,7 +95,7 @@
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-typescript": "^7.9.0",
     "@effective/eslint-config": "^2.4.1",
-    "@effective/prettier": "^2.0.5",
+    "@effective/prettier": "^2.1.0",
     "@types/glob": "^7.1.1",
     "@types/node": "^13",
     "@types/prettier": "^2.0.0",
