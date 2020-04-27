@@ -95,26 +95,27 @@
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-typescript": "^7.9.0",
     "@effective/eslint-config": "^2.4.3",
-    "@effective/prettier": "^2.1.0",
+    "@effective/prettier": "^2.2.0",
     "@types/glob": "^7.1.1",
     "@types/node": "^13",
     "@types/prettier": "^2.0.0",
     "@types/resolve": "1.14.0",
     "@types/vscode": "1.44.0",
     "core-js": "^3.6.5",
-    "eslint": "^6.8.0",
     "glob": "^7.1.6",
     "husky": "^4.2.5",
     "lint-staged": "^10.1.7",
     "mem": "^6.1.0",
-    "preppy": "^10.1.0",
+    "preppy": "^10.2.0",
     "resolve": "^1.17.0",
     "typescript": "^3.8.3",
     "vsce": "^1.75.0"
   },
   "dependencies": {
+    "eslint": "^6.8.0",
     "prettier": "^2.0.5",
-    "read-pkg-up": "^7.0.1"
+    "read-pkg-up": "^7.0.1",
+    "vscode": "^1.1.37"
   },
   "contributes": {
     "configuration": {
