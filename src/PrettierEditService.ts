@@ -92,7 +92,6 @@ export default class PrettierEditService implements Disposable {
   }
 
   public dispose = () => {
-    this.moduleResolver.dispose()
     this.notificationService.dispose()
     this.formatterHandler?.dispose()
     this.rangeFormatterHandler?.dispose()
@@ -247,45 +246,18 @@ export default class PrettierEditService implements Disposable {
     }
 
     this.loggingService.logInfo("Prettier Options:", prettierOptions)
-    this.loggingService.logInfo(`Language ID: ${languageId}`, {
-      supported: this.languageResolver.doesLanguageSupportESLint(languageId)
-    })
 
-    if (this.languageResolver.doesLanguageSupportESLint(languageId)) {
-      const prettierEslintModule = this.moduleResolver.getModuleInstance(
-        fileName,
-        "@effective/prettier"
-      )
-      if (prettierEslintModule) {
-        this.loggingService.logInfo("Formatting using '@effective/prettier'")
-        const prettierEslintFormat = prettierEslintModule.formatText as PrettierLintFormat
-        return this.safeExecution(
-          () =>
-            prettierEslintFormat(text, fileName, {
-              autoRoot: true,
-              verbose: true
-              // debug: true,
-            }),
-          text
-        )
-      } else {
-        this.loggingService.logInfo("Formatting using plain 'prettier'")
-      }
-    }
-
-    if (this.languageResolver.doesParserSupportStylelint(parser)) {
-      const prettierStylelintModule = this.moduleResolver.getModuleInstance(
-        fileName,
-        "@effective/prettier-stylelint"
-      )
-      if (prettierStylelintModule) {
-        this.loggingService.logInfo("Formatting using '@effective/prettier-stylelint'")
-        const prettierStylelint = prettierStylelintModule.formatText as PrettierLintFormat
-        return this.safeExecution(() => prettierStylelint(text, fileName, {}), text)
-      }
-    }
-
-    return this.safeExecution(async () => prettierInstance.format(text, prettierOptions), text)
+    const effectivePrettierInstance = this.moduleResolver.getEffectivePrettierInstance(
+      fileName
+    )
+    return this.safeExecution(
+      async () =>
+        effectivePrettierInstance.formatText(text, fileName, {
+          autoRoot: true,
+          verbose: true
+        }),
+      text
+    )
   }
 
   /**
@@ -296,7 +268,10 @@ export default class PrettierEditService implements Disposable {
    * @param fileName The filename of the current document
    * @returns formatted text or defaultText
    */
-  private async safeExecution(callback, defaultText: string): Promise<string> {
+  private async safeExecution(
+    callback: () => Promise<string>,
+    defaultText: string
+  ): Promise<string> {
     try {
       const returnValue = await callback()
       this.statusBarService.updateStatusBar(FormattingResult.Success)

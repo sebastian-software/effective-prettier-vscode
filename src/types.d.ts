@@ -1,6 +1,8 @@
 import prettier from "prettier"
+import effectivePrettier from "@effective/prettier"
 
 type PrettierModule = typeof prettier
+type EffectivePrettierModule = typeof effectivePrettier
 
 type TrailingCommaOption = "none" | "es5" | "all"
 

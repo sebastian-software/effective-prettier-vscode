@@ -3,18 +3,9 @@ import { Uri } from "vscode"
 
 import { ModuleResolver } from "./ModuleResolver"
 
-const ESLINT_SUPPORTED_LANGUAGES = new Set([
-  "javascript",
-  "javascriptreact",
-  "typescript",
-  "typescriptreact",
-  "vue"
-])
-
-const STYLE_PARSERS = new Set([ "postcss", "css", "less", "scss" ])
-
 export class LanguageResolver {
   constructor(private moduleResolver: ModuleResolver) {}
+
   public getParsersFromLanguageId(
     uri: Uri,
     languageId: string
@@ -24,6 +15,7 @@ export class LanguageResolver {
       // the Angular parser matches first because both register the language 'html'
       return [ "html" ]
     }
+
     const language = this.getSupportLanguages(uri.fsPath).find(
       (lang) =>
         lang &&
@@ -31,19 +23,23 @@ export class LanguageResolver {
         Array.isArray(lang.vscodeLanguageIds) &&
         lang.vscodeLanguageIds.includes(languageId)
     )
+
     if (!language) {
       return []
     }
+
     return language.parsers
   }
 
   public allEnabledLanguages(fsPath?: string): string[] {
     const enabledLanguages: string[] = []
+
     this.getSupportLanguages(fsPath).forEach((lang) => {
       if (lang && lang.vscodeLanguageIds) {
         enabledLanguages.push(...lang.vscodeLanguageIds)
       }
     })
+
     return enabledLanguages.filter((value, index, self) => self.indexOf(value) === index)
   }
 
@@ -56,14 +52,6 @@ export class LanguageResolver {
       "json",
       "graphql"
     ]
-  }
-
-  public doesLanguageSupportESLint(languageId: string) {
-    return ESLINT_SUPPORTED_LANGUAGES.has(languageId)
-  }
-
-  public doesParserSupportStylelint(parser: string) {
-    return STYLE_PARSERS.has(parser)
   }
 
   private getSupportLanguages(fsPath?: string) {

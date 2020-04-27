@@ -1,15 +1,16 @@
 import path from "path"
 
 import mem from "mem"
-import prettier from "prettier"
 import readPkgUp from "read-pkg-up"
 import resolve from "resolve"
 import { Disposable } from "vscode"
+import prettier from "prettier"
+import effectivePrettier from "@effective/prettier"
 
 import { LoggingService } from "./LoggingService"
 import { FAILED_TO_LOAD_MODULE_MESSAGE } from "./message"
 import { NotificationService } from "./NotificationService"
-import { PrettierModule } from "./types"
+import { EffectivePrettierModule, PrettierModule } from "./types"
 
 interface ModuleResult<T> {
   moduleInstance: T | undefined
@@ -55,25 +56,26 @@ export class ModuleResolver implements Disposable {
     return moduleInstance || prettier
   }
 
-  public getModuleInstance(fsPath: string, packageName: string): any {
-    const { moduleInstance } = this.requireLocalPkg<any>(fsPath, packageName)
-    return moduleInstance
-  }
-
   /**
-   * Clears the module and config cache
+   * Returns an instance of the @effective/prettier module.
+   *
+   * @param fileName The path of the file to use as the starting point. If none provided, the bundled prettier will be used.
    */
-  public dispose() {
-    this.getPrettierInstance().clearConfigCache()
-    this.resolvedModules.forEach((modulePath) => {
-      try {
-        const module = require.cache[require.resolve(modulePath)]
-        module?.exports?.clearConfigCache()
-        delete require.cache[require.resolve(modulePath)]
-      } catch (error) {
-        this.loggingService.logError("Error clearing module cache.", error)
-      }
-    })
+  public getEffectivePrettierInstance(
+    fileName?: string,
+    options?: ModuleResolutionOptions
+  ): EffectivePrettierModule {
+    if (!fileName) {
+      return effectivePrettier
+    }
+
+    const { moduleInstance } = this.requireLocalPkg<EffectivePrettierModule>(
+      fileName,
+      "@effective/prettier",
+      options
+    )
+
+    return moduleInstance || effectivePrettier
   }
 
   /**
