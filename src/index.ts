@@ -1,6 +1,5 @@
 import { ExtensionContext, commands } from "vscode"
 
-import { ConfigResolver } from "./ConfigResolver"
 import { LanguageResolver } from "./LanguageResolver"
 import { LoggingService } from "./LoggingService"
 import { ModuleResolver } from "./ModuleResolver"
@@ -10,8 +9,6 @@ import { StatusBarService } from "./StatusBarService"
 
 // the application insights key (also known as instrumentation key)
 export function activate(context: ExtensionContext) {
-  const hrStart = process.hrtime()
-
   const loggingService = new LoggingService()
 
   loggingService.logInfo(`Extension Name: ${process.env.BUNDLE_NAME}.`)
@@ -21,7 +18,6 @@ export function activate(context: ExtensionContext) {
     loggingService.show()
   })
 
-  const configResolver = new ConfigResolver(loggingService)
   const notificationService = new NotificationService(loggingService)
 
   const moduleResolver = new ModuleResolver(loggingService, notificationService)
@@ -33,7 +29,6 @@ export function activate(context: ExtensionContext) {
   const editService = new PrettierEditService(
     moduleResolver,
     languageResolver,
-    configResolver,
     loggingService,
     notificationService,
     statusBarService
@@ -48,4 +43,6 @@ export function activate(context: ExtensionContext) {
   )
 }
 
-export function deactivate() {}
+export function deactivate() {
+  // pass
+}

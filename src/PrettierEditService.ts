@@ -12,15 +12,17 @@ import {
   workspace
 } from "vscode"
 
-import { ConfigResolver, RangeFormattingOptions } from "./ConfigResolver"
 import { LanguageResolver } from "./LanguageResolver"
 import { LoggingService } from "./LoggingService"
 import { ModuleResolver } from "./ModuleResolver"
 import { NotificationService } from "./NotificationService"
 import { PrettierEditProvider } from "./PrettierEditProvider"
 import { FormattingResult, StatusBarService } from "./StatusBarService"
-import { PrettierLintFormat } from "./types"
-import { getConfig } from "./util"
+
+interface RangeFormattingOptions {
+  rangeStart: number
+  rangeEnd: number
+}
 
 interface LanguageSelectors {
   rangeLanguageSelector: DocumentSelector
@@ -47,7 +49,6 @@ export default class PrettierEditService implements Disposable {
   constructor(
     private moduleResolver: ModuleResolver,
     private languageResolver: LanguageResolver,
-    private configResolver: ConfigResolver,
     private loggingService: LoggingService,
     private notificationService: NotificationService,
     private statusBarService: StatusBarService
@@ -189,8 +190,6 @@ export default class PrettierEditService implements Disposable {
   ): Promise<string | undefined> {
     this.loggingService.logInfo(`Formatting ${fileName}`)
 
-    const vscodeConfig = getConfig(uri)
-
     const prettierInstance = this.moduleResolver.getPrettierInstance(fileName, {
       showNotifications: true
     })
@@ -226,26 +225,6 @@ export default class PrettierEditService implements Disposable {
       this.statusBarService.updateStatusBar(FormattingResult.Error)
       return
     }
-
-    const { options: prettierOptions, error } = await this.configResolver.getPrettierOptions(
-      fileName,
-      parser as prettier.BuiltInParserName,
-      {
-        config: undefined
-      },
-      rangeFormattingOptions
-    )
-
-    if (error) {
-      this.loggingService.logError(
-        `Error resolving prettier configuration for ${fileName}`,
-        error
-      )
-      this.statusBarService.updateStatusBar(FormattingResult.Error)
-      return
-    }
-
-    this.loggingService.logInfo("Prettier Options:", prettierOptions)
 
     const effectivePrettierInstance = this.moduleResolver.getEffectivePrettierInstance(
       fileName
