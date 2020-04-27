@@ -853,10 +853,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@effective/eslint-config@^2.3.7":
-  version "2.3.7"
-  resolved "https://registry.yarnpkg.com/@effective/eslint-config/-/eslint-config-2.3.7.tgz#432e4bd26092d41b2e9ff43229b5755805e93d82"
-  integrity sha512-CQCGRkeHjCooXGMx2YZ+977lgtMKWkRBcwsLvr8j5fFjVe0HdY5XnI7+fr4EHVV/D+tu9UuZM6IRgI2MtTPNRQ==
+"@effective/eslint-config@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@effective/eslint-config/-/eslint-config-2.4.0.tgz#8291f2ffafd7f98efb89878800472c8db4240eb0"
+  integrity sha512-Khq1zAL8UqfARhLVcC5Y8Hc8qRHROLckUll8jHHgtrx6/AH5KcQ1fW8eZfEsiCy23fxj9l2t5vO33CnWceuddA==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^2.29.0"
     "@typescript-eslint/parser" "^2.29.0"
@@ -873,7 +873,7 @@
     eslint-plugin-react "^7.19.0"
     eslint-plugin-react-hooks "^3.0.0"
     eslint-plugin-shopify-lean "^1.1.2"
-    eslint-plugin-unicorn "^18.0.1"
+    eslint-plugin-unicorn "^19.0.1"
 
 "@effective/prettier@^2.0.4":
   version "2.0.4"
@@ -2335,15 +2335,16 @@ eslint-plugin-shopify-lean@^1.1.2:
     pkg-dir "4.2.0"
     pluralize "^8.0.0"
 
-eslint-plugin-unicorn@^18.0.1:
-  version "18.0.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-unicorn/-/eslint-plugin-unicorn-18.0.1.tgz#8d3285ffa57b2f6b07550b94e62228d93bf61813"
-  integrity sha512-Y4bgygek4x4ogeMcSHr6MZi3frBPZ80eIpMOsxew7jAblb53OYflpRh0an62Z6jv/fw7D3TkXauqLOBWbT9adg==
+eslint-plugin-unicorn@^19.0.1:
+  version "19.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-unicorn/-/eslint-plugin-unicorn-19.0.1.tgz#05eef02f33426b8aa4f21cd5e4785b456335b85b"
+  integrity sha512-fu0/h5mHXfBC6EkA3i2vCjsfC8j53+T9txGhNL4fpxJ+1JKsUKfv+tmXDgy0XnLHhFjnOZp4tRWJWbcykeIP2Q==
   dependencies:
     ci-info "^2.0.0"
     clean-regexp "^1.0.0"
     eslint-ast-utils "^1.1.0"
     eslint-template-visitor "^1.1.0"
+    eslint-utils "^2.0.0"
     import-modules "^2.0.0"
     lodash "^4.17.15"
     read-pkg-up "^7.0.1"
