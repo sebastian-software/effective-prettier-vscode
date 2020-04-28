@@ -1,5 +1,5 @@
-import prettier from "prettier"
-import effectivePrettier from "@effective/prettier"
+import type prettier from "prettier"
+import type effectivePrettier from "@effective/prettier"
 
 type PrettierModule = typeof prettier
 type EffectivePrettierModule = typeof effectivePrettier
