@@ -3,13 +3,15 @@ import path from "path"
 import mem from "mem"
 import readPkgUp from "read-pkg-up"
 import resolve from "resolve"
+import importGlobal from "import-global"
 import { Disposable } from "vscode"
-import prettier from "prettier"
-import effectivePrettier from "@effective/prettier"
 
 import { LoggingService } from "./LoggingService"
 import { NotificationService } from "./NotificationService"
 import { EffectivePrettierModule, PrettierModule } from "./types"
+
+const prettier = importGlobal.silent("prettier")
+const effectivePrettier = importGlobal.silent("@effective/prettier")
 
 interface ModuleResult<T> {
   moduleInstance: T | undefined
@@ -94,7 +96,6 @@ export class ModuleResolver implements Disposable {
     this.loggingService.logInfo(`Local load package: ${packageName}`)
     try {
       modulePath = this.findPkgMem(fsPath, packageName)
-      this.loggingService.logInfo(`modulePath: ${modulePath}`)
 
       if (modulePath !== undefined) {
         const moduleInstance = this.loadNodeModule(modulePath)
