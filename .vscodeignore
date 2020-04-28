@@ -4,6 +4,8 @@ src/
 tsconfig.json
 yarn.lock
 babel.config.js
+.eslintrc.yml
+.eslintignore
 .prettierrc.yml
 .prettierignore
 .gitattributes
