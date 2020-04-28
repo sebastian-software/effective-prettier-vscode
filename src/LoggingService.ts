@@ -1,4 +1,3 @@
-import prettier from "prettier"
 import { window } from "vscode"
 
 type LogLevel = "INFO" | "WARN" | "ERROR" | "NONE"
@@ -60,11 +59,7 @@ export class LoggingService {
   }
 
   private logObject(data: object): void {
-    const message = prettier
-      .format(JSON.stringify(data, null, 2), {
-        parser: "json"
-      })
-      .trim()
+    const message = JSON.stringify(data, null, 2)
     this.outputChannel.appendLine(message)
   }
 
