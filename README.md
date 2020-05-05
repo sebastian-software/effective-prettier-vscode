@@ -69,12 +69,12 @@ To ensure that this extension is used over other extensions you may have install
 
 ### Prettier Resolution
 
-This extension will use prettier from your project's local dependencies.
+This extension will use the tools installed in your project's local dependencies.
 
-To install prettier in your project run:
+To install it in your project run:
 
 ```
-npm install prettier @effective/prettier -D
+npm install @effective/prettier -D
 ```
 
 ### Plugins
