@@ -115,7 +115,9 @@
     "typescript": "^3.9.3",
     "vsce": "^1.75.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "normalize-package-data": "^2.5.0"
+  },
   "contributes": {
     "configuration": {
       "type": "object",
