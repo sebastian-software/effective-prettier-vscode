@@ -856,10 +856,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@effective/eslint-config@^3.2.1":
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/@effective/eslint-config/-/eslint-config-3.2.1.tgz#572ba6c6cfe7a52b11e7c37724507f9f1d78c280"
-  integrity sha512-qyA1JGtg4s4p//dQkW0kume7avgi08+0yNvoWUsHjYc07NB8qgoBeJ2AoLBuZgbK5xgmbLmbZWr1T5tooT25cw==
+"@effective/eslint-config@^3.2.2":
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/@effective/eslint-config/-/eslint-config-3.2.2.tgz#367d16fe910d64dc688754347a4790a0e8710776"
+  integrity sha512-ItaCfrUnVVnQ+/pkZESKx40n3UhArnncoZfBaR8sGzr53Z7QWlo651nyi0Zz13Lj8rq/letmA1C+ReFF3s3LxQ==
   dependencies:
     "@babel/runtime" "^7.10.2"
     "@typescript-eslint/eslint-plugin" "^3.1.0"
