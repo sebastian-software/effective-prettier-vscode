@@ -19,6 +19,7 @@ interface ModuleResolutionOptions {
 
 export class ModuleResolver implements Disposable {
   private findPkgMem: (fsPath: string, pkgName: string) => string | undefined
+  private requireLocalPkgMem: (fsPath: string, pkgName: string) => any
   private resolvedModules = new Array<string>()
 
   constructor(
@@ -26,6 +27,9 @@ export class ModuleResolver implements Disposable {
     private notificationService: NotificationService
   ) {
     this.findPkgMem = mem(this.findPkg, {
+      cacheKey: (parameters: string[]) => `${parameters[0]}:${parameters[1]}`
+    })
+    this.requireLocalPkgMem = mem(this.requireLocalPkg, {
       cacheKey: (parameters: string[]) => `${parameters[0]}:${parameters[1]}`
     })
   }
@@ -43,7 +47,7 @@ export class ModuleResolver implements Disposable {
       return effectivePrettier
     }
 
-    const moduleInstance = this.requireLocalPkg<EffectivePrettierModule>(
+    const moduleInstance = this.requireLocalPkgMem<EffectivePrettierModule>(
       fileName,
       "@effective/prettier",
       options
