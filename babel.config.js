@@ -22,15 +22,15 @@ module.exports = (api) => {
         }
       ],
       [ "@babel/plugin-proposal-class-properties", { loose: true }],
-      isUmd ?
-        null :
-        [
-          "@babel/transform-runtime",
-          {
-            helpers: true,
-            regenerator: false
-          }
-        ]
+      isUmd
+        ? null
+        : [
+            "@babel/transform-runtime",
+            {
+              helpers: true,
+              regenerator: false
+            }
+          ]
     ].filter(Boolean),
     presets: [
       [
