@@ -109,7 +109,6 @@
     "lint-staged": "^10.2.8",
     "mem": "^6.1.0",
     "preppy": "^10.5.0",
-    "prettier": "^2.0.5",
     "read-pkg-up": "^7.0.1",
     "resolve": "^1.17.0",
     "typescript": "^3.9.3",

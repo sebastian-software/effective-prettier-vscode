@@ -27,7 +27,7 @@ export class LanguageResolver {
   }
 
   private getSupportLanguages(fsPath?: string) {
-    const prettierInstance = this.moduleResolver.getPrettierInstance(fsPath)
-    return prettierInstance.getSupportInfo().languages
+    const prettierInstance = this.moduleResolver.getEffectivePrettierInstance(fsPath)
+    return prettierInstance.getPrettierSupportInfo().languages
   }
 }

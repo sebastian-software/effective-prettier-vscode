@@ -8,9 +8,8 @@ import { Disposable } from "vscode"
 
 import { LoggingService } from "./LoggingService"
 import { NotificationService } from "./NotificationService"
-import { EffectivePrettierModule, PrettierModule } from "./types"
+import { EffectivePrettierModule } from "./types"
 
-const prettier = importGlobal.silent("prettier")
 const effectivePrettier = importGlobal.silent("@effective/prettier")
 
 interface ModuleResolutionOptions {
@@ -28,24 +27,6 @@ export class ModuleResolver implements Disposable {
     this.findPkgMem = mem(this.findPkg, {
       cacheKey: (parameters: string[]) => `${parameters[0]}:${parameters[1]}`
     })
-  }
-
-  /**
-   * Returns an instance of the prettier module.
-   *
-   * @param fileName The path of the file to use as the starting point. If none provided, the bundled prettier will be used.
-   */
-  public getPrettierInstance(
-    fileName?: string,
-    options?: ModuleResolutionOptions
-  ): PrettierModule {
-    if (!fileName) {
-      return prettier
-    }
-
-    const moduleInstance = this.requireLocalPkg<PrettierModule>(fileName, "prettier", options)
-
-    return moduleInstance || prettier
   }
 
   /**

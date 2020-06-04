@@ -1,6 +1,3 @@
-/* eslint-disable max-statements */
-
-import prettier from "prettier"
 import {
   Disposable,
   DocumentFilter,
@@ -112,6 +109,7 @@ export default class PrettierEditService implements Disposable {
       allLanguages = this.languageResolver.allEnabledLanguages()
     } else {
       allLanguages = []
+
       for (const folder of workspace.workspaceFolders) {
         const allWorkspaceLanguages = this.languageResolver.allEnabledLanguages(
           folder.uri.fsPath
@@ -193,17 +191,24 @@ export default class PrettierEditService implements Disposable {
   ): Promise<string | undefined> {
     this.loggingService.logInfo(`Formatting ${fileName}`)
 
-    const prettierInstance = this.moduleResolver.getPrettierInstance(fileName, {
-      showNotifications: true
+    const effectivePrettierInstance = this.moduleResolver.getEffectivePrettierInstance(
+      fileName,
+      {
+        showNotifications: true
+      }
+    )
+
+    if (!effectivePrettierInstance) {
+      this.loggingService.logInfo("Unable to find the required package @effective/prettier!")
+      this.statusBarService.updateStatusBar(FormattingResult.Error)
+      return
+    }
+
+    const fileInfo = await effectivePrettierInstance.getPrettierFileInfo(fileName, {
+      resolveConfig: true // Fix for 1.19 (https://prettier.io/blog/2019/11/09/1.19.0.html#api)
     })
 
-    let fileInfo: prettier.FileInfoResult | undefined
-    if (fileName) {
-      fileInfo = await prettierInstance.getFileInfo(fileName, {
-        resolveConfig: true // Fix for 1.19 (https://prettier.io/blog/2019/11/09/1.19.0.html#api)
-      })
-      this.loggingService.logInfo("File Info:", fileInfo)
-    }
+    this.loggingService.logInfo("File Info:", fileInfo)
 
     if (fileInfo && fileInfo.ignored) {
       this.loggingService.logInfo("File is ignored, skipping.")
@@ -211,9 +216,6 @@ export default class PrettierEditService implements Disposable {
       return
     }
 
-    const effectivePrettierInstance = this.moduleResolver.getEffectivePrettierInstance(
-      fileName
-    )
     return this.safeExecution(
       async () =>
         effectivePrettierInstance.formatText(text, fileName, {
