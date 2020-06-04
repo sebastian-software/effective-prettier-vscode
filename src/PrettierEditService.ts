@@ -16,13 +16,7 @@ import { NotificationService } from "./NotificationService"
 import { PrettierEditProvider } from "./PrettierEditProvider"
 import { FormattingResult, StatusBarService } from "./StatusBarService"
 
-interface RangeFormattingOptions {
-  rangeStart: number
-  rangeEnd: number
-}
-
 interface LanguageSelectors {
-  rangeLanguageSelector: DocumentSelector
   languageSelector: DocumentSelector
 }
 
@@ -43,7 +37,6 @@ const PRETTIER_CONFIG_FILES = [
 
 export default class PrettierEditService implements Disposable {
   private formatterHandler: undefined | Disposable
-  private rangeFormatterHandler: undefined | Disposable
 
   // eslint-disable-next-line max-params
   constructor(
@@ -80,12 +73,9 @@ export default class PrettierEditService implements Disposable {
 
   public registerFormatter = () => {
     this.dispose()
-    const { languageSelector, rangeLanguageSelector } = this.selectors()
+    const { languageSelector } = this.selectors()
     const editProvider = new PrettierEditProvider(this.provideEdits)
-    this.rangeFormatterHandler = languages.registerDocumentRangeFormattingEditProvider(
-      rangeLanguageSelector,
-      editProvider
-    )
+
     this.formatterHandler = languages.registerDocumentFormattingEditProvider(
       languageSelector,
       editProvider
@@ -95,9 +85,7 @@ export default class PrettierEditService implements Disposable {
   public dispose = () => {
     this.notificationService.dispose()
     this.formatterHandler?.dispose()
-    this.rangeFormatterHandler?.dispose()
     this.formatterHandler = undefined
-    this.rangeFormatterHandler = undefined
   }
 
   /**
@@ -122,19 +110,10 @@ export default class PrettierEditService implements Disposable {
       }
     }
 
-    this.loggingService.logInfo("Enabling prettier for languages", allLanguages.sort())
-
-    const allRangeLanguages = this.languageResolver.rangeSupportedLanguages()
-    this.loggingService.logInfo(
-      "Enabling prettier for range supported languages",
-      allRangeLanguages.sort()
-    )
-
     if (workspace.workspaceFolders === undefined) {
       // no workspace opened
       return {
-        languageSelector: allLanguages,
-        rangeLanguageSelector: allRangeLanguages
+        languageSelector: allLanguages
       }
     }
 
@@ -143,31 +122,19 @@ export default class PrettierEditService implements Disposable {
       language: l,
       scheme: "untitled"
     }))
-    const untitledRangeLanguageSelector: DocumentFilter[] = allRangeLanguages.map((l) => ({
-      language: l,
-      scheme: "untitled"
-    }))
     const fileLanguageSelector: DocumentFilter[] = allLanguages.map((l) => ({
-      language: l,
-      scheme: "file"
-    }))
-    const fileRangeLanguageSelector: DocumentFilter[] = allRangeLanguages.map((l) => ({
       language: l,
       scheme: "file"
     }))
 
     return {
-      languageSelector: untitledLanguageSelector.concat(fileLanguageSelector),
-      rangeLanguageSelector: untitledRangeLanguageSelector.concat(fileRangeLanguageSelector)
+      languageSelector: untitledLanguageSelector.concat(fileLanguageSelector)
     }
   }
 
-  private provideEdits = async (
-    document: TextDocument,
-    options?: RangeFormattingOptions
-  ): Promise<TextEdit[]> => {
+  private provideEdits = async (document: TextDocument): Promise<TextEdit[]> => {
     const hrStart = process.hrtime()
-    const result = await this.format(document.getText(), document, options)
+    const result = await this.format(document.getText(), document)
     if (!result) {
       // No edits happened, return never so VS Code can try other formatters
       return []
@@ -186,16 +153,13 @@ export default class PrettierEditService implements Disposable {
    */
   private async format(
     text: string,
-    { fileName, languageId, uri, isUntitled }: TextDocument,
-    rangeFormattingOptions?: RangeFormattingOptions
+    { fileName, languageId, uri, isUntitled }: TextDocument
   ): Promise<string | undefined> {
-    this.loggingService.logInfo(`Formatting ${fileName}`)
+    this.loggingService.logInfo(`Formatting ${fileName} [${languageId}]...`)
 
     const effectivePrettierInstance = this.moduleResolver.getEffectivePrettierInstance(
       fileName,
-      {
-        showNotifications: true
-      }
+      { showNotifications: true }
     )
 
     if (!effectivePrettierInstance) {

@@ -1,38 +1,13 @@
 import {
   CancellationToken,
   DocumentFormattingEditProvider,
-  DocumentRangeFormattingEditProvider,
   FormattingOptions,
-  Range,
   TextDocument,
   TextEdit
 } from "vscode"
 
-interface RangeFormattingOptions {
-  rangeStart: number
-  rangeEnd: number
-}
-
-export class PrettierEditProvider
-implements DocumentRangeFormattingEditProvider, DocumentFormattingEditProvider {
-  constructor(
-    private provideEdits: (
-      document: TextDocument,
-      options?: RangeFormattingOptions
-    ) => Promise<TextEdit[]>
-  ) {}
-
-  public async provideDocumentRangeFormattingEdits(
-    document: TextDocument,
-    range: Range,
-    options: FormattingOptions,
-    token: CancellationToken
-  ): Promise<TextEdit[]> {
-    return this.provideEdits(document, {
-      rangeEnd: document.offsetAt(range.end),
-      rangeStart: document.offsetAt(range.start)
-    })
-  }
+export class PrettierEditProvider implements DocumentFormattingEditProvider {
+  constructor(private provideEdits: (document: TextDocument) => Promise<TextEdit[]>) {}
 
   public async provideDocumentFormattingEdits(
     document: TextDocument,

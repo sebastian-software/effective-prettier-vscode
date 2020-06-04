@@ -15,17 +15,6 @@ export class LanguageResolver {
     return enabledLanguages.filter((value, index, self) => self.indexOf(value) === index)
   }
 
-  public rangeSupportedLanguages(): string[] {
-    return [
-      "javascript",
-      "javascriptreact",
-      "typescript",
-      "typescriptreact",
-      "json",
-      "graphql"
-    ]
-  }
-
   private getSupportLanguages(fsPath?: string) {
     const prettierInstance = this.moduleResolver.getEffectivePrettierInstance(fsPath)
     return prettierInstance.getPrettierSupportInfo().languages
