@@ -78,6 +78,6 @@ You can turn on format-on-save on a per-language basis by scoping the setting:
 
 ## Copyright
 
-<img src="https://cdn.rawgit.com/sebastian-software/sebastian-software-brand/0d4ec9d6/sebastiansoftware-en.svg" alt="Logo of Sebastian Software GmbH, Mainz, Germany" width="460" height="160"/>
+<img src="https://sebastian-software-brand.now.sh/sebastiansoftware-en.png" alt="Logo of Sebastian Software GmbH, Mainz, Germany" width="500" height="174"/>
 
 Copyright 2020<br/>[Sebastian Software GmbH](http://www.sebastian-software.de)
