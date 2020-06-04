@@ -89,7 +89,7 @@ export class ModuleResolver implements Disposable {
     options?: ModuleResolutionOptions
   ) {
     let modulePath
-    this.loggingService.logInfo(`Local load package: ${packageName}`)
+    this.loggingService.logInfo(`Trying to load locally installed package: ${packageName}...`)
 
     try {
       modulePath = this.findPkgMem(fsPath, packageName)
