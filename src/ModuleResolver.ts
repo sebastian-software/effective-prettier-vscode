@@ -78,7 +78,7 @@ export class ModuleResolver implements Disposable {
         return
       }
 
-      const moduleInstance = this.loadNodeModule(modulePath)
+      const moduleInstance = this.loadNodeModule(modulePath, fsPath)
       if (!this.resolvedModules.includes(modulePath)) {
         this.resolvedModules.push(modulePath)
       }
@@ -99,9 +99,14 @@ export class ModuleResolver implements Disposable {
     }
   }
 
-  private loadNodeModule(moduleName: string): any | undefined {
+  private loadNodeModule(moduleName: string, fsPath: string): any | undefined {
     try {
-      return require(moduleName)
+      const previousDirectory = process.cwd()
+      const importDirectory = path.dirname(fsPath)
+      process.chdir(importDirectory)
+      const module = require(moduleName)
+      process.chdir(previousDirectory)
+      return module
     } catch (error) {
       this.loggingService.logError(`Error loading node module '${moduleName}'`, error)
     }
