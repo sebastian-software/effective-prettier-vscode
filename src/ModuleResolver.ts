@@ -114,7 +114,7 @@ export class ModuleResolver implements Disposable {
       this.loggingService.logError(`Failed to load local module ${packageName}.`, error)
       if (options?.showNotifications) {
         this.notificationService.showErrorMessage(
-          "Failed to load module. If you have prettier or plugins referenced in package.json, ensure you have run `npm install`",
+          `Failed to load module ${packageName}. Please make sure that it is installed locally!`,
           [ `Attempted to load ${packageName} from ${modulePath || "package.json"}` ]
         )
       }
@@ -128,7 +128,6 @@ export class ModuleResolver implements Disposable {
     } catch (error) {
       this.loggingService.logError(`Error loading node module '${moduleName}'`, error)
     }
-
   }
 
   /**
@@ -160,13 +159,13 @@ export class ModuleResolver implements Disposable {
         (res.packageJson.devDependencies && res.packageJson.devDependencies[packageName]))
     ) {
       return resolve.sync(packageName, { basedir: res.path })
-    } if (res && res.path) {
+    }
+    if (res && res.path) {
       const parent = path.resolve(path.dirname(res.path), "..")
       if (parent !== root) {
         return this.findPkg(parent, packageName)
       }
     }
-
   }
 
   public dispose() {
