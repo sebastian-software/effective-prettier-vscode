@@ -4,7 +4,7 @@ import { LanguageResolver } from "./LanguageResolver"
 import { LoggingService } from "./LoggingService"
 import { ModuleResolver } from "./ModuleResolver"
 import { NotificationService } from "./NotificationService"
-import PrettierEditService from "./PrettierEditService"
+import { PrettierEditService } from "./PrettierEditService"
 import { StatusBarService } from "./StatusBarService"
 
 // the application insights key (also known as instrumentation key)

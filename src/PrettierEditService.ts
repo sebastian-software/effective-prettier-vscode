@@ -35,7 +35,7 @@ const PRETTIER_CONFIG_FILES = [
   "prettier.config.js"
 ]
 
-export default class PrettierEditService implements Disposable {
+export class PrettierEditService implements Disposable {
   private formatterHandler: undefined | Disposable
 
   // eslint-disable-next-line max-params
