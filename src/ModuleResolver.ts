@@ -31,7 +31,7 @@ export class ModuleResolver implements Disposable {
     private notificationService: NotificationService
   ) {
     this.findPkgMem = mem(this.findPkg, {
-      cacheKey: (parameters) => `${parameters[0]}:${parameters[1]}`
+      cacheKey: (parameters: string[]) => `${parameters[0]}:${parameters[1]}`
     })
   }
 
@@ -92,8 +92,9 @@ export class ModuleResolver implements Disposable {
     packageName: string,
     options?: ModuleResolutionOptions
   ): ModuleResult<T> {
-    let modulePath = undefined
+    let modulePath
     this.loggingService.logInfo(`Local load package: ${packageName}`)
+
     try {
       modulePath = this.findPkgMem(fsPath, packageName)
 
@@ -127,7 +128,7 @@ export class ModuleResolver implements Disposable {
     } catch (error) {
       this.loggingService.logError(`Error loading node module '${moduleName}'`, error)
     }
-    return undefined
+
   }
 
   /**
@@ -159,13 +160,13 @@ export class ModuleResolver implements Disposable {
         (res.packageJson.devDependencies && res.packageJson.devDependencies[packageName]))
     ) {
       return resolve.sync(packageName, { basedir: res.path })
-    } else if (res && res.path) {
+    } if (res && res.path) {
       const parent = path.resolve(path.dirname(res.path), "..")
       if (parent !== root) {
         return this.findPkg(parent, packageName)
       }
     }
-    return
+
   }
 
   public dispose() {
