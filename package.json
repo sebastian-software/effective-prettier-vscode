@@ -103,20 +103,18 @@
     "@types/vscode": "1.45.1",
     "core-js": "^3.6.5",
     "eslint": "^7.1.0",
+    "find-up": "^4.1.0",
     "glob": "^7.1.6",
     "husky": "^4.2.5",
     "import-global": "^0.1.0",
     "lint-staged": "^10.2.8",
     "mem": "^6.1.0",
     "preppy": "^10.5.0",
-    "read-pkg-up": "^7.0.1",
     "resolve": "^1.17.0",
     "typescript": "^3.9.3",
     "vsce": "^1.75.0"
   },
-  "dependencies": {
-    "normalize-package-data": "^2.5.0"
-  },
+  "dependencies": {},
   "contributes": {
     "configuration": {
       "type": "object",

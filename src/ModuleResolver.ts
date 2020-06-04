@@ -1,7 +1,8 @@
 import path from "path"
+import fs from "fs"
 
 import mem from "mem"
-import readPkgUp from "read-pkg-up"
+import findUp from "find-up"
 import resolve from "resolve"
 import importGlobal from "import-global"
 import { Disposable } from "vscode"
@@ -121,23 +122,25 @@ export class ModuleResolver implements Disposable {
       finalPath = splitPath.slice(0, nodeModulesIndex).join("/")
     }
 
-    const res = readPkgUp.sync({ cwd: finalPath, normalize: false })
-    const { root } = path.parse(finalPath)
+    this.loggingService.logInfo(`Trying to find package ${packageName} in ${finalPath}...`)
+    const packagePath = findUp.sync("package.json", { cwd: finalPath })
+    if (!packagePath) {
+      return
+    }
+
+    const basedir = path.dirname(packagePath)
+    const json = JSON.parse(fs.readFileSync(packagePath, "utf8"))
 
     if (
-      res &&
-      res.packageJson &&
-      ((res.packageJson.dependencies && res.packageJson.dependencies[packageName]) ||
-        (res.packageJson.devDependencies && res.packageJson.devDependencies[packageName]))
+      json &&
+      ((json.dependencies && json.dependencies[packageName]) ||
+        (json.devDependencies && json.devDependencies[packageName]))
     ) {
-      return resolve.sync(packageName, { basedir: res.path })
+      return resolve.sync(packageName, { basedir })
     }
-    if (res && res.path) {
-      const parent = path.resolve(path.dirname(res.path), "..")
-      if (parent !== root) {
-        return this.findPkg(parent, packageName)
-      }
-    }
+
+    const parent = path.resolve(basedir, "..")
+    return this.findPkg(parent, packageName)
   }
 
   public dispose() {
