@@ -68,7 +68,6 @@
     "lint": "eslint '**/*.{ts,js}' && tsc --noEmit",
     "format": "prettier --write '**/*.{json,md,yml}' && effective-prettier '**/*.{ts,js}'",
     "vscode:package": "vsce package",
-    "vscode:publish": "vsce publish",
     "vscode:prepublish": "preppy --deep --quiet",
     "watch": "preppy --watch --deep",
     "build": "preppy --deep"
@@ -79,11 +78,8 @@
     }
   },
   "lint-staged": {
-    "**/*.{ts,js}": [
+    "**/*.{ts,js,json,md,yml}": [
       "effective-prettier"
-    ],
-    "**/*.{json,md,yml}": [
-      "prettier --write"
     ]
   },
   "devDependencies": {
