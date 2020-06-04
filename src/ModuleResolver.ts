@@ -48,11 +48,7 @@ export class ModuleResolver implements Disposable {
       return prettier
     }
 
-    const { moduleInstance } = this.requireLocalPkg<PrettierModule>(
-      fileName,
-      "prettier",
-      options
-    )
+    const moduleInstance = this.requireLocalPkg<PrettierModule>(fileName, "prettier", options)
 
     return moduleInstance || prettier
   }
@@ -70,7 +66,7 @@ export class ModuleResolver implements Disposable {
       return effectivePrettier
     }
 
-    const { moduleInstance } = this.requireLocalPkg<EffectivePrettierModule>(
+    const moduleInstance = this.requireLocalPkg<EffectivePrettierModule>(
       fileName,
       "@effective/prettier",
       options
@@ -91,25 +87,26 @@ export class ModuleResolver implements Disposable {
     fsPath: string,
     packageName: string,
     options?: ModuleResolutionOptions
-  ): ModuleResult<T> {
+  ) {
     let modulePath
     this.loggingService.logInfo(`Local load package: ${packageName}`)
 
     try {
       modulePath = this.findPkgMem(fsPath, packageName)
-
-      if (modulePath !== undefined) {
-        const moduleInstance = this.loadNodeModule(modulePath)
-        if (!this.resolvedModules.includes(modulePath)) {
-          this.resolvedModules.push(modulePath)
-        }
-        this.loggingService.logInfo(
-          `Loaded module '${packageName}@${
-            moduleInstance.version ?? "unknown"
-          }' from '${modulePath}'`
-        )
-        return { moduleInstance, modulePath }
+      if (!modulePath) {
+        return
       }
+
+      const moduleInstance = this.loadNodeModule(modulePath)
+      if (!this.resolvedModules.includes(modulePath)) {
+        this.resolvedModules.push(modulePath)
+      }
+      this.loggingService.logInfo(
+        `Loaded module '${packageName}@${
+          moduleInstance.version ?? "unknown"
+        }' from '${modulePath}'`
+      )
+      return moduleInstance
     } catch (error) {
       this.loggingService.logError(`Failed to load local module ${packageName}.`, error)
       if (options?.showNotifications) {
@@ -119,7 +116,6 @@ export class ModuleResolver implements Disposable {
         )
       }
     }
-    return { moduleInstance: undefined, modulePath }
   }
 
   private loadNodeModule(moduleName: string): any | undefined {
