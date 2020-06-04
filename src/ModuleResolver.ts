@@ -13,11 +13,6 @@ import { EffectivePrettierModule, PrettierModule } from "./types"
 const prettier = importGlobal.silent("prettier")
 const effectivePrettier = importGlobal.silent("@effective/prettier")
 
-interface ModuleResult<T> {
-  moduleInstance: T | undefined
-  modulePath: string | undefined
-}
-
 interface ModuleResolutionOptions {
   showNotifications: boolean
 }
