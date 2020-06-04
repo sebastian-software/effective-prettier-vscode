@@ -70,6 +70,7 @@ export class ModuleResolver implements Disposable {
     options?: ModuleResolutionOptions
   ) {
     let modulePath
+    this.loggingService.logInfo(`File system path: ${fsPath}`)
     this.loggingService.logInfo(`Trying to load locally installed package: ${packageName}...`)
 
     try {
@@ -83,9 +84,9 @@ export class ModuleResolver implements Disposable {
         this.resolvedModules.push(modulePath)
       }
       this.loggingService.logInfo(
-        `Loaded module '${packageName}@${
+        `Module '${packageName}@${
           moduleInstance.version ?? "unknown"
-        }' from '${modulePath}'`
+        }' was loaded successfully from '${modulePath}'`
       )
       return moduleInstance
     } catch (error) {
@@ -101,11 +102,7 @@ export class ModuleResolver implements Disposable {
 
   private loadNodeModule(moduleName: string, fsPath: string): any | undefined {
     try {
-      const previousDirectory = process.cwd()
-      const importDirectory = path.dirname(fsPath)
-      process.chdir(importDirectory)
       const module = require(moduleName)
-      process.chdir(previousDirectory)
       return module
     } catch (error) {
       this.loggingService.logError(`Error loading node module '${moduleName}'`, error)

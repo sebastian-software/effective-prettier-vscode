@@ -58,8 +58,6 @@ export class StatusBarService {
         return
       }
 
-      this.loggingService.setOutputLevel("NONE") // No logs here, they are annoying.
-
       const filePath = editor.document.isUntitled ? undefined : editor.document.fileName
       const score = languages.match(
         this.languageResolver.allEnabledLanguages(filePath),
@@ -74,7 +72,5 @@ export class StatusBarService {
     } else {
       this.statusBarItem.hide()
     }
-
-    this.loggingService.setOutputLevel("INFO") // Resume logging
   }
 }

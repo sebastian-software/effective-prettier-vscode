@@ -172,7 +172,7 @@ export class PrettierEditService implements Disposable {
       resolveConfig: true // Fix for 1.19 (https://prettier.io/blog/2019/11/09/1.19.0.html#api)
     })
 
-    this.loggingService.logInfo("File Info:", fileInfo)
+    // this.loggingService.logInfo("File Info:", fileInfo)
 
     if (fileInfo && fileInfo.ignored) {
       this.loggingService.logInfo("File is ignored, skipping.")
