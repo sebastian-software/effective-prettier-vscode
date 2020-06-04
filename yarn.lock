@@ -856,14 +856,15 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@effective/eslint-config@^3.3.1":
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/@effective/eslint-config/-/eslint-config-3.3.1.tgz#228e6131ac45262dc88f5a0f704526a28259efc5"
-  integrity sha512-q0+fla0NCXUlwYh5d0Uop+b9eKCLKn9JTS753jPppdiN8rxC5KCeMoBQf+etpwcId2YerwyEDC9rXt0umBdcHQ==
+"@effective/eslint-config@^3.4.0":
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/@effective/eslint-config/-/eslint-config-3.4.0.tgz#37d1c1ccee3976a50b8407d7ae4e882203ab597a"
+  integrity sha512-jnlzSXG2FvIAeyfs4pb+OgWbwzIP/X9tJP51JTAO5Tfq6fEdNtTN6v7zBTysvA83WD/JI10lP0iZUttl2SJWkg==
   dependencies:
     "@babel/runtime" "^7.10.2"
     "@typescript-eslint/eslint-plugin" "^3.1.0"
     "@typescript-eslint/parser" "^3.1.0"
+    app-root-path "^3.0.0"
     babel-plugin-module-resolver "^4.0.0"
     eslint-config-airbnb "^18.1.0"
     eslint-config-prettier "^6.11.0"
@@ -872,7 +873,7 @@
     eslint-plugin-filenames "^1.3.2"
     eslint-plugin-import "^2.20.2"
     eslint-plugin-jest "^23.13.2"
-    eslint-plugin-jsdoc "^27.0.2"
+    eslint-plugin-jsdoc "^27.0.3"
     eslint-plugin-jsx-a11y "^6.2.3"
     eslint-plugin-react "^7.20.0"
     eslint-plugin-react-hooks "^4.0.4"
@@ -2250,7 +2251,7 @@ eslint-plugin-jest@^23.13.2:
   dependencies:
     "@typescript-eslint/experimental-utils" "^2.5.0"
 
-eslint-plugin-jsdoc@^27.0.2:
+eslint-plugin-jsdoc@^27.0.3:
   version "27.0.3"
   resolved "https://registry.yarnpkg.com/eslint-plugin-jsdoc/-/eslint-plugin-jsdoc-27.0.3.tgz#8dade43cc61cf220c72709477456c6437a7bcf8e"
   integrity sha512-TWagiFwWFAq1rkl4cuoh6JHD7qAYCuYEinZe6Rxnfu7FvoxRnAMAu6zswADIzQXHoK2c+ueTDOKAQSHII0ttHg==
