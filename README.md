@@ -2,39 +2,7 @@
 
 [Prettier](https://prettier.io/) is an opinionated code formatter. It enforces a consistent style by parsing your code and re-printing it with its own rules that take the maximum line length into account, wrapping code when necessary.
 
-<p align="center">
-  <em>
-    JavaScript
-    · TypeScript
-    · Flow
-    · JSX
-    · JSON
-  </em>
-  <br />
-  <em>
-    CSS
-    · SCSS
-    · Less
-  </em>
-  <br />
-  <em>
-    HTML
-    · Vue
-    · Angular
-  </em>
-  <br />
-  <em>
-    GraphQL
-    · Markdown
-    · YAML
-  </em>
-  <br />
-  <em>
-    <a href="https://prettier.io/docs/en/plugins.html">
-      Your favorite language?
-    </a>
-  </em>
-</p>
+While Prettier is fine this is even better: This extension makes use of [Effective Prettier](https://www.npmjs.com/package/@effective/prettier) to combine ESLint with Prettier. It executes both in one process and saves the combined result. This allows to fine-tune the changes made by Prettier or apply additional auto-fixable rules to your code e.g. sorting and grouping of imports, syncing JSDoc comments, reworking code to preferred modern approaches (e.g. usage of const, spreading, destructing, ...).
 
 <p align="center">
   <a href="https://marketplace.visualstudio.com/items?itemName=sebastian-software.effective-prettier-vscode">
@@ -67,7 +35,7 @@ To ensure that this extension is used over other extensions you may have install
 }
 ```
 
-### Prettier Resolution
+### @Effective/Prettier Resolution
 
 This extension will use the tools installed in your project's local dependencies.
 
@@ -76,10 +44,6 @@ To install it in your project run:
 ```
 npm install @effective/prettier -D
 ```
-
-### Plugins
-
-This extension supports [Prettier plugins](https://prettier.io/docs/en/plugins.html). If you have Prettier and a plugin registered in your `package.json`, this extension will attempt to register the language and provide automatic code formatting for the built-in and plugin languages.
 
 ## Configuration
 
@@ -93,9 +57,6 @@ Options are searched recursively down from the file being formatted so if you wa
 
 ```
 1. CMD + Shift + P -> Format Document
-OR
-1. Select the text you want to Prettify
-2. CMD + Shift + P -> Format Selection
 ```
 
 ### Keyboard Shortcuts
@@ -115,15 +76,8 @@ You can turn on format-on-save on a per-language basis by scoping the setting:
 "editor.formatOnSave": false
 ```
 
-### Format Selection
+## Copyright
 
-Format selection works on several languages depending on what Prettier itself supports. The following languages currently are supported:
+<img src="https://cdn.rawgit.com/sebastian-software/sebastian-software-brand/0d4ec9d6/sebastiansoftware-en.svg" alt="Logo of Sebastian Software GmbH, Mainz, Germany" width="460" height="160"/>
 
-```
-javascript
-javascriptreact
-typescript
-typescriptreact
-json
-graphql
-```
+Copyright 2020<br/>[Sebastian Software GmbH](http://www.sebastian-software.de)
