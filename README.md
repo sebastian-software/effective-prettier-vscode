@@ -37,7 +37,7 @@ To ensure that this extension is used over other extensions you may have install
 
 ### @Effective/Prettier Resolution
 
-This extension will use the tools installed in your project's local dependencies.
+This extension will use the tools installed in your project's local dependencies. As this extension is basically an integration of Effective-Prettier into VSCode you have to install that tool into your local JavaScript application.
 
 To install it in your project run:
 
