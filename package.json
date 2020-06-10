@@ -66,7 +66,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "lint": "eslint '**/*.{ts,js}' && tsc --noEmit",
-    "format": "prettier --write '**/*.{json,md,yml}' && effective-prettier '**/*.{ts,js}'",
+    "format": "effective-prettier '**/*.{ts,js,json,md,yml}'",
     "vscode:package": "vsce package",
     "vscode:prepublish": "preppy --deep --quiet",
     "watch": "preppy --watch --deep",
