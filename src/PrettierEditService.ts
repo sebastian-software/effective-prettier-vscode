@@ -168,6 +168,19 @@ export class PrettierEditService implements Disposable {
       return
     }
 
+    if (effectivePrettierInstance.connectLogger) {
+      effectivePrettierInstance.connectLogger({
+        debug: (...messages) => this.loggingService.logInfo(messages.join("\n")),
+        warn: (...messages) => this.loggingService.logWarning(messages.join("\n")),
+        error: (...messages) => this.loggingService.logError(messages.join("\n")),
+        info: (...messages) => this.loggingService.logInfo(messages.join("\n"))
+      })
+    } else {
+      this.loggingService.logInfo(
+        "Please update @effective/prettier for better log redirection."
+      )
+    }
+
     const fileInfo = await effectivePrettierInstance.getPrettierFileInfo(fileName, {
       resolveConfig: true // Fix for 1.19 (https://prettier.io/blog/2019/11/09/1.19.0.html#api)
     })
@@ -207,7 +220,7 @@ export class PrettierEditService implements Disposable {
 
       return returnValue
     } catch (error) {
-      this.loggingService.logError("Error formatting document.", error)
+      this.loggingService.logError(`Error formatting document: ${error.message}.`)
       this.statusBarService.updateStatusBar(FormattingResult.Error)
 
       return defaultText
