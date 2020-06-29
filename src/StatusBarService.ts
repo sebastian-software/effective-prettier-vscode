@@ -8,7 +8,6 @@ import {
 } from "vscode"
 
 import { LanguageResolver } from "./LanguageResolver"
-import { LoggingService } from "./LoggingService"
 
 export enum FormattingResult {
   Success = "check",
@@ -18,10 +17,7 @@ export enum FormattingResult {
 
 export class StatusBarService {
   private statusBarItem: StatusBarItem
-  constructor(
-    private languageResolver: LanguageResolver,
-    private loggingService: LoggingService
-  ) {
+  constructor(private languageResolver: LanguageResolver) {
     // Setup the statusBarItem
     this.statusBarItem = window.createStatusBarItem(StatusBarAlignment.Right, -1)
     this.statusBarItem.text = "✪ Prettier"
