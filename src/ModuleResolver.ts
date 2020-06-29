@@ -11,7 +11,7 @@ import { LoggingService } from "./LoggingService"
 import { NotificationService } from "./NotificationService"
 import { EffectivePrettierModule } from "./types"
 
-const effectivePrettier = importGlobal.silent("@effective/prettier")
+const globalEffectivePrettier = importGlobal.silent("@effective/prettier")
 
 interface ModuleResolutionOptions {
   showNotifications: boolean
@@ -44,7 +44,7 @@ export class ModuleResolver implements Disposable {
     options?: ModuleResolutionOptions
   ): EffectivePrettierModule {
     if (!fileName) {
-      return effectivePrettier
+      return globalEffectivePrettier
     }
 
     const moduleInstance = this.requireLocalPkgMem<EffectivePrettierModule>(
@@ -53,7 +53,7 @@ export class ModuleResolver implements Disposable {
       options
     )
 
-    return moduleInstance || effectivePrettier
+    return moduleInstance || globalEffectivePrettier
   }
 
   /**
