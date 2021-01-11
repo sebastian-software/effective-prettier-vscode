@@ -2,7 +2,7 @@
   "name": "effective-prettier-vscode",
   "displayName": "✪ Effective Prettier for VSCode - Code Formatter",
   "description": "✪ Effective Prettier for VSCode - Code Formatter",
-  "version": "2.5.1",
+  "version": "2.5.2",
   "publisher": "sebastian-software",
   "author": {
     "name": "Sebastian Software",
@@ -23,7 +23,7 @@
     "url": "https://github.com/sebastian-software/effective-prettier-vscode/issues"
   },
   "engines": {
-    "vscode": "^1.51.0"
+    "vscode": "^1.52.0"
   },
   "keywords": [
     "multi-root ready",
