@@ -23,7 +23,7 @@
     "url": "https://github.com/sebastian-software/effective-prettier-vscode/issues"
   },
   "engines": {
-    "vscode": "^1.52.0"
+    "vscode": "^1.58.1"
   },
   "keywords": [
     "multi-root ready",
