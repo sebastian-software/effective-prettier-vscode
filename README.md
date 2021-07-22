@@ -80,4 +80,4 @@ You can turn on format-on-save on a per-language basis by scoping the setting:
 
 <img src="https://sebastian-software-brand.now.sh/sebastiansoftware-en.png" alt="Logo of Sebastian Software GmbH, Mainz, Germany" width="500" height="174"/>
 
-Copyright 2020<br/>[Sebastian Software GmbH](http://www.sebastian-software.de)
+Copyright 2020-2021<br/>[Sebastian Software GmbH](http://www.sebastian-software.de)
